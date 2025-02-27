@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boogie Website
+
+This is the official website for Boogie, a modern publishing and media production company. The site is built using Next.js, Tailwind CSS, and MDX for content management.
+
+## Features
+
+- Modern, responsive design
+- Blog with MDX content management
+- Dark mode support
+- SEO optimized
+- Contact form
+- Ready for deployment on Vercel
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18.17.0 or later
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/boogiecc.git
+cd boogiecc
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content Management
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The website uses MDX for content management. Content files are stored in the following directories:
+
+- `/src/content/posts/` - Blog posts
+- `/src/content/pages/` - Static pages
+
+### Creating a New Blog Post
+
+1. Create a new `.mdx` file in the `/src/content/posts/` directory
+2. Add frontmatter at the top of the file:
+```
+---
+title: "Your Post Title"
+date: "YYYY-MM-DD"
+description: "A brief description of your post"
+author: "Your Name"
+tags: ["tag1", "tag2"]
+image: "/blog/your-image.jpg"
+---
+```
+3. Write your content using Markdown syntax
+
+## Deployment
+
+This site is configured for deployment on Vercel. To deploy:
+
+1. Push your code to a GitHub repository
+2. Import the repository into Vercel
+3. Configure your domain settings in the Vercel dashboard
+
+## Development
+
+### Commands
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the production-ready site
+- `npm run start` - Start the production server (after building)
+- `npm run lint` - Run ESLint
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [MDX Documentation](https://mdxjs.com/docs/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For inquiries, please contact [hello@boog.ie](mailto:hello@boog.ie)
