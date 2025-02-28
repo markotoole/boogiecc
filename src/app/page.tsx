@@ -10,10 +10,13 @@ export default function Home() {
           <div className="grid gap-8 md:grid-cols-2 md:gap-12">
             <div className="flex flex-col justify-center space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                Modern <span className="text-blue-600 dark:text-blue-500">Publishing</span> & Media Production
+                Welcome to <span className="text-blue-600 dark:text-blue-500">boog.ie</span>
               </h1>
               <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
-                Boogie creates compelling content and meaningful experiences for forward-thinking brands and organizations.
+                Where digital innovation meets creative expression. We're a multifaceted media company pushing boundaries across app development, music production, and digital publishing. Our passionate team of developers, musicians, writers, and designers collaborates to create meaningful digital experiences that resonate with audiences worldwide.
+              </p>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
+                At boog.ie, we believe in the power of technology to amplify creative voices and build communities around shared passions. Whether you're looking for cutting-edge apps, fresh musical talents, or thought-provoking content, you've found your digital home. Explore our ecosystem of innovation and discover what happens when technical expertise meets artistic vision.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link 
@@ -33,8 +36,8 @@ export default function Home() {
             <div className="flex items-center justify-center">
               <div className="relative h-[350px] w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                 <Image
-                  src="/images/blog/count_nine_album_cover.png"
-                  alt="Count Nine Album Cover - Boogie Media"
+                  src="/images/blog/BoogieLogo.png"
+                  alt="Boogie Media Logo"
                   fill
                   priority
                   className="object-contain"
@@ -45,56 +48,105 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Artist Profiles Section */}
       <section className="bg-gray-50 px-4 py-20 dark:bg-gray-900">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col items-center justify-center text-center">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Artist Profiles</h2>
+            <p className="mt-4 max-w-[700px] text-gray-500 dark:text-gray-400">
+              Meet the talented artists pushing boundaries and creating exceptional work in our collective.
+            </p>
+          </div>
+          <div className="mt-16 grid gap-12 md:grid-cols-2">
+            {/* Count Nine Profile */}
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+              <div className="mb-6 flex justify-center">
+                <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/blog/count_nine_album_cover.png"
+                    alt="Count Nine"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold">Count Nine</h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence. Drawing from occult symbolism and quantum physics alike, his productions pulse with otherworldly energy while maintaining dance floor appeal. With releases like "Ninth Dimension" and "Esoteric Circuit," Count Nine invites listeners into a realm where shadows dance with light, revealing deeper truths through carefully constructed sonic journeys. His performances are immersive rituals, transforming venues into temporary temples where collective consciousness expands through rhythmic communion.
+              </p>
+            </div>
+            
+            {/* Proteus Profile */}
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+              <div className="mb-6 flex justify-center">
+                <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/blog/proteus_gemini.jpeg"
+                    alt="Proteus"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold">Proteus</h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Proteus harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive. Named for the ancient deity of elemental change, Proteus embraces musical metamorphosis as spiritual practice. Her breakthrough EP "Divine Dissolution" explores the beauty found in embracing life's inevitable cycles of creation and destruction. On stage, she's a commanding presence – a modern mystic using technology to channel ancient wisdom through contemporary electronic expressions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Work Section */}
+      <section className="px-4 py-20">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col items-center justify-center text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Services</h2>
             <p className="mt-4 max-w-[700px] text-gray-500 dark:text-gray-400">
-              We offer a range of services to help brands tell their stories and connect with their audiences.
+              Explore our range of offerings that help creative minds bring their vision to life.
             </p>
           </div>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* Service 1 */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Content Creation</h3>
+              <h3 className="text-xl font-bold">App Development</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
-                High-quality written and visual content that engages your audience and tells your brand's story.
+                Cutting-edge mobile and web applications built with the latest technologies and user-centric design.
               </p>
             </div>
             {/* Service 2 */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Digital Publishing</h3>
+              <h3 className="text-xl font-bold">Music Production</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
-                End-to-end publishing solutions for digital magazines, newsletters, and multimedia platforms.
+                Professional audio engineering, mixing, mastering, and artist development services for emerging talent.
               </p>
             </div>
             {/* Service 3 */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Media Production</h3>
+              <h3 className="text-xl font-bold">Digital Publishing</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
-                Professional video, audio, and photography services to elevate your brand's visual presence.
+                End-to-end publishing solutions for digital content creators, from conception to distribution.
               </p>
             </div>
             {/* Service 4 */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Brand Strategy</h3>
+              <h3 className="text-xl font-bold">Content Creation</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
-                Strategic direction for your brand's identity, messaging, and content marketing approach.
+                High-quality written and visual content that engages audiences and tells compelling stories.
               </p>
             </div>
             {/* Service 5 */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Web Development</h3>
+              <h3 className="text-xl font-bold">Creative Direction</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
-                Modern, responsive websites and digital platforms built with the latest technologies.
+                Strategic guidance for artistic projects, helping to shape vision, identity, and execution.
               </p>
             </div>
             {/* Service 6 */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Social Media</h3>
+              <h3 className="text-xl font-bold">Community Building</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
-                Comprehensive social media strategies, content creation, and community management.
+                Creating and nurturing digital spaces where like-minded creators can connect and collaborate.
               </p>
             </div>
           </div>
@@ -109,98 +161,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Work Section */}
-      <section className="px-4 py-20">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col items-center justify-center text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Featured Work</h2>
-            <p className="mt-4 max-w-[700px] text-gray-500 dark:text-gray-400">
-              Take a look at some of our recent projects and collaborations.
-            </p>
-          </div>
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Project 1 */}
-            <div className="group relative overflow-hidden rounded-lg">
-              <div className="aspect-video w-full bg-gray-100 dark:bg-gray-800">
-                <div className="flex h-full items-center justify-center text-2xl font-bold text-gray-300 dark:text-gray-700">
-                  PROJECT 1
-                </div>
-                {/* Replace with actual project image */}
-                {/* <Image
-                  src="/path-to-project-image.jpg"
-                  alt="Project title"
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                /> */}
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Project Title</h3>
-                <p className="mt-2 text-gray-500 dark:text-gray-400">
-                  Brief description of the project and the services provided.
-                </p>
-              </div>
-            </div>
-            {/* Project 2 */}
-            <div className="group relative overflow-hidden rounded-lg">
-              <div className="aspect-video w-full bg-gray-100 dark:bg-gray-800">
-                <div className="flex h-full items-center justify-center text-2xl font-bold text-gray-300 dark:text-gray-700">
-                  PROJECT 2
-                </div>
-                {/* Replace with actual project image */}
-                {/* <Image
-                  src="/path-to-project-image.jpg"
-                  alt="Project title"
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                /> */}
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Project Title</h3>
-                <p className="mt-2 text-gray-500 dark:text-gray-400">
-                  Brief description of the project and the services provided.
-                </p>
-              </div>
-            </div>
-            {/* Project 3 */}
-            <div className="group relative overflow-hidden rounded-lg">
-              <div className="aspect-video w-full bg-gray-100 dark:bg-gray-800">
-                <div className="flex h-full items-center justify-center text-2xl font-bold text-gray-300 dark:text-gray-700">
-                  PROJECT 3
-                </div>
-                {/* Replace with actual project image */}
-                {/* <Image
-                  src="/path-to-project-image.jpg"
-                  alt="Project title"
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                /> */}
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Project Title</h3>
-                <p className="mt-2 text-gray-500 dark:text-gray-400">
-                  Brief description of the project and the services provided.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 flex justify-center">
-            <Link
-              href="/work"
-              className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-900 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-            >
-              View All Work
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="bg-blue-600 px-4 py-16 text-white dark:bg-blue-700">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col items-center justify-center text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Ready to Work With Us?</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Join Our Creative Community</h2>
             <p className="mt-4 max-w-[700px] text-blue-100">
-              Let's collaborate to create something amazing together. Get in touch to discuss your project.
+              Connect with us to explore collaborations, discover new artists, or bring your creative vision to life.
             </p>
             <Link
               href="/contact"
