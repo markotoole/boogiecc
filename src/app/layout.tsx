@@ -34,7 +34,7 @@ export default function RootLayout({
           <div className="container flex h-16 items-center px-4 sm:px-6 lg:px-8">
             <Link href="/" className="flex items-center space-x-2">
               <Image 
-                src="/images/blog/BoogieLogo.png" 
+                src="/images/blog-optimized/boogielogoa.webp" 
                 alt="Boogie Logo" 
                 width={40} 
                 height={40} 
@@ -44,6 +44,7 @@ export default function RootLayout({
             </Link>
             <nav className="ml-auto flex gap-6">
               <Link href="/about" className="text-sm font-medium hover:underline">About</Link>
+              <Link href="/artists" className="text-sm font-medium hover:underline">Artists</Link>
               <Link href="/work" className="text-sm font-medium hover:underline">Work</Link>
               <Link href="/blog" className="text-sm font-medium hover:underline">Blog</Link>
               <Link href="/contact" className="text-sm font-medium hover:underline">Contact</Link>
@@ -58,7 +59,7 @@ export default function RootLayout({
             <div className="flex flex-col items-center gap-4 md:items-start md:gap-2">
               <Link href="/" className="flex items-center space-x-2">
                 <Image 
-                  src="/images/blog/BoogieLogo.png" 
+                  src="/images/blog-optimized/boogielogoa.webp" 
                   alt="Boogie Logo" 
                   width={32} 
                   height={32} 

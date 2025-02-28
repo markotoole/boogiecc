@@ -13,6 +13,15 @@ export default function BlogPage() {
   // For now, we'll use mock data
   const posts = [
     {
+      slug: "count-nine-interview",
+      title: "Into the Shadows: An Exclusive Interview with Count Nine",
+      date: "2025-02-28",
+      description: "Electronic music's most enigmatic figure, Count Nine, sits down with Boogie in a rare interview to discuss his creative process, occult influences, and the hidden knowledge behind his atmospheric soundscapes.",
+      author: "Boogie Editorial Team",
+      tags: ["interview", "music", "electronic", "artist profile"],
+      image: "/images/blog-optimized/countninestanding.webp"
+    },
+    {
       slug: "content-marketing-trends",
       title: "5 Content Marketing Trends for 2025",
       date: "2025-02-15",

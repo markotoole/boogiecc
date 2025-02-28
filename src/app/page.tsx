@@ -59,11 +59,11 @@ export default function Home() {
           </div>
           <div className="mt-16 grid gap-12 md:grid-cols-2">
             {/* Count Nine Profile */}
-            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
-                    src="/images/blog/count_nine_album_cover.png"
+                    src="/images/blog-optimized/countninestanding.webp"
                     alt="Count Nine"
                     fill
                     className="object-cover"
@@ -72,12 +72,23 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold">Count Nine</h3>
               <p className="mt-4 text-gray-500 dark:text-gray-400">
-                Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence. Drawing from occult symbolism and quantum physics alike, his productions pulse with otherworldly energy while maintaining dance floor appeal. With releases like "Ninth Dimension" and "Esoteric Circuit," Count Nine invites listeners into a realm where shadows dance with light, revealing deeper truths through carefully constructed sonic journeys. His performances are immersive rituals, transforming venues into temporary temples where collective consciousness expands through rhythmic communion.
+                Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence. Drawing from occult symbolism and quantum physics alike, his productions pulse with otherworldly energy while maintaining dance floor appeal.
               </p>
+              <div className="mt-6">
+                <Link 
+                  href="/artists/count-nine"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                >
+                  View Full Profile
+                  <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </Link>
+              </div>
             </div>
             
             {/* Proteus Profile */}
-            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
@@ -90,9 +101,23 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold">Proteus</h3>
               <p className="mt-4 text-gray-500 dark:text-gray-400">
-                Proteus harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive. Named for the ancient deity of elemental change, Proteus embraces musical metamorphosis as spiritual practice. Her breakthrough EP "Divine Dissolution" explores the beauty found in embracing life's inevitable cycles of creation and destruction. On stage, she's a commanding presence – a modern mystic using technology to channel ancient wisdom through contemporary electronic expressions.
+                Proteus harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
               </p>
+              <div className="mt-6">
+                <span className="inline-flex items-center text-gray-400 dark:text-gray-500">
+                  Profile Coming Soon
+                </span>
+              </div>
             </div>
+          </div>
+          
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/artists"
+              className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-900 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+            >
+              View All Artists
+            </Link>
           </div>
         </div>
       </section>
