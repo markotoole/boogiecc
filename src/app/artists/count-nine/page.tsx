@@ -11,14 +11,25 @@ export default function CountNinePage() {
     <div className="container mx-auto max-w-6xl px-4 py-12">
       {/* Hero Section */}
       <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-center">
-        <div className="relative order-2 aspect-[3/4] w-full overflow-hidden rounded-xl shadow-xl lg:order-1 lg:w-1/2">
-          <Image
-            src="/images/blog-optimized/countninestanding.webp"
-            alt="Count Nine"
-            fill
-            priority
-            className="object-cover"
-          />
+        <div className="relative order-2 w-full lg:order-1 lg:w-1/2 space-y-6">
+          <div className="aspect-[3/4] overflow-hidden rounded-xl shadow-xl">
+            <Image
+              src="/images/blog-optimized/countninestanding.webp"
+              alt="Count Nine artist photo"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+          <div className="aspect-square overflow-hidden rounded-xl shadow-xl">
+            <Image
+              src="/images/blog/count_nine_album_cover.png"
+              alt="Count Nine album cover - Ninth Dimension EP"
+              width={500}
+              height={500}
+              className="object-cover w-full h-full"
+            />
+          </div>
         </div>
         
         <div className="order-1 lg:order-2 lg:w-1/2 lg:pl-12">
