@@ -53,6 +53,31 @@ export interface Category {
   color?: { hex: string }
 }
 
+export interface Page {
+  _id: string
+  title: string
+  slug: { current: string }
+  pageType: string
+  heroSection?: {
+    headline?: string
+    subheadline?: string
+    heroImage?: any
+    ctaButton?: {
+      text?: string
+      link?: string
+    }
+  }
+  content?: any[]
+  sections?: any[]
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    ogImage?: any
+  }
+  publishedAt: string
+  isPublished: boolean
+}
+
 // GROQ Queries
 export const postsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   _id,
@@ -96,6 +121,40 @@ export const categoriesQuery = `*[_type == "category"] | order(title asc) {
   color
 }`
 
+export const pagesQuery = `*[_type == "page" && isPublished == true] | order(title asc) {
+  _id,
+  title,
+  slug,
+  pageType,
+  heroSection,
+  publishedAt,
+  seo
+}`
+
+export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug && isPublished == true][0] {
+  _id,
+  title,
+  slug,
+  pageType,
+  heroSection,
+  content,
+  sections,
+  seo,
+  publishedAt
+}`
+
+export const pageByTypeQuery = `*[_type == "page" && pageType == $pageType && isPublished == true][0] {
+  _id,
+  title,
+  slug,
+  pageType,
+  heroSection,
+  content,
+  sections,
+  seo,
+  publishedAt
+}`
+
 // Query Functions
 export async function getAllPosts(): Promise<Post[]> {
   return client.fetch(postsQuery)
@@ -111,6 +170,18 @@ export async function getAllAuthors(): Promise<Author[]> {
 
 export async function getAllCategories(): Promise<Category[]> {
   return client.fetch(categoriesQuery)
+}
+
+export async function getAllPages(): Promise<Page[]> {
+  return client.fetch(pagesQuery)
+}
+
+export async function getPageBySlug(slug: string): Promise<Page | null> {
+  return client.fetch(pageBySlugQuery, { slug })
+}
+
+export async function getPageByType(pageType: string): Promise<Page | null> {
+  return client.fetch(pageByTypeQuery, { pageType })
 }
 
 export async function getPostsByCategory(categorySlug: string): Promise<Post[]> {
