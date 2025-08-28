@@ -1,11 +1,13 @@
 # Boogie Website
 
-This is the official website for Boogie, a modern publishing and media production company. The site is built using Next.js, Tailwind CSS, and MDX for content management.
+This is the official website for Boogie, a modern publishing and media production company. The site is built using Next.js, Tailwind CSS, and Sanity CMS for content management.
 
 ## Features
 
 - Modern, responsive design
-- Blog with MDX content management
+- Blog with Sanity CMS content management
+- Rich text editing with images and code blocks
+- Real-time content collaboration
 - Dark mode support
 - SEO optimized
 - Contact form
@@ -21,48 +23,56 @@ This is the official website for Boogie, a modern publishing and media productio
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/boogiecc.git
+git clone https://github.com/markotoole/boogiecc.git
 cd boogiecc
 ```
 
 2. Install dependencies
 ```bash
 npm install
-# or
-yarn install
 ```
 
-3. Start the development server
+3. Set up Sanity CMS (see [SANITY_SETUP.md](./SANITY_SETUP.md) for detailed instructions)
+```bash
+# Copy environment variables
+cp .env.example .env.local
+
+# Initialize Sanity project
+npx sanity init --env=.env.local
+
+# Deploy Sanity Studio
+npx sanity deploy
+```
+
+4. Start the development server
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Content Management
+## Content Management with Sanity CMS
 
-The website uses MDX for content management. Content files are stored in the following directories:
+The website now uses Sanity CMS for content management, providing:
 
-- `/src/content/posts/` - Blog posts
-- `/src/content/pages/` - Static pages
+- **Rich Text Editor**: WYSIWYG editing with support for images, code blocks, and custom formatting
+- **Real-time Collaboration**: Multiple editors can work simultaneously
+- **Image Optimization**: Automatic image processing and CDN delivery
+- **Version History**: Track all content changes
+- **Live Preview**: See changes in real-time on your site
 
-### Creating a New Blog Post
+### Accessing Sanity Studio
 
-1. Create a new `.mdx` file in the `/src/content/posts/` directory
-2. Add frontmatter at the top of the file:
-```
----
-title: "Your Post Title"
-date: "YYYY-MM-DD"
-description: "A brief description of your post"
-author: "Your Name"
-tags: ["tag1", "tag2"]
-image: "/blog/your-image.jpg"
----
-```
-3. Write your content using Markdown syntax
+- **Embedded Studio**: Visit [http://localhost:3000/studio](http://localhost:3000/studio)
+- **Standalone Studio**: Run `npm run studio` and visit [http://localhost:3333](http://localhost:3333)
+
+### Content Types
+
+1. **Blog Posts** - Rich text articles with images, categories, and SEO
+2. **Authors** - Writer profiles with bios and social links
+3. **Categories** - Organized content tags with custom colors
+
+For detailed setup instructions, see [SANITY_SETUP.md](./SANITY_SETUP.md)
 
 ## Deployment
 
@@ -70,7 +80,11 @@ This site is configured for deployment on Vercel. To deploy:
 
 1. Push your code to a GitHub repository
 2. Import the repository into Vercel
-3. Configure your domain settings in the Vercel dashboard
+3. Add environment variables in Vercel dashboard:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID`
+   - `NEXT_PUBLIC_SANITY_DATASET`
+   - `SANITY_API_TOKEN` (optional)
+4. Configure your domain settings
 
 ## Development
 
@@ -80,6 +94,16 @@ This site is configured for deployment on Vercel. To deploy:
 - `npm run build` - Build the production-ready site
 - `npm run start` - Start the production server (after building)
 - `npm run lint` - Run ESLint
+- `npm run studio` - Start Sanity Studio (standalone)
+
+## Technology Stack
+
+- **Framework**: Next.js 15
+- **Styling**: Tailwind CSS v4
+- **CMS**: Sanity.io
+- **Content**: Rich text with PortableText
+- **Images**: Next.js Image + Sanity CDN
+- **Deployment**: Vercel
 
 ## Learn More
 
@@ -87,7 +111,18 @@ To learn more about the technologies used in this project:
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [MDX Documentation](https://mdxjs.com/docs/)
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [PortableText Guide](https://portabletext.org/)
+
+## Migration from MDX
+
+If you have existing MDX content, you can migrate it to Sanity by:
+
+1. Creating authors and categories in Sanity Studio
+2. Creating new posts and copying your MDX content
+3. Converting markdown to Sanity's rich text format
+
+The old MDX files are preserved for reference.
 
 ## License
 
