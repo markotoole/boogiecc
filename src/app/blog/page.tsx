@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllFilesFrontmatter } from "@/lib/mdx";
+import { getAllPosts, Post } from "@/lib/queries";
+import { urlFor } from "@/lib/sanity";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,47 +9,10 @@ export const metadata: Metadata = {
   description: "Latest insights, news, and articles from Boogie Media",
 };
 
-export default function BlogPage() {
-  // In a real implementation, you would use the getAllFilesFrontmatter function
-  // For now, we'll use mock data
-  const posts = [
-    {
-      slug: "count-nine-interview",
-      title: "Into the Shadows: An Exclusive Interview with Count Nine",
-      date: "2025-02-28",
-      description: "Electronic music's most enigmatic figure, Count Nine, sits down with Boogie in a rare interview to discuss his creative process, occult influences, and the hidden knowledge behind his atmospheric soundscapes.",
-      author: "Boogie Editorial Team",
-      tags: ["interview", "music", "electronic", "artist profile"],
-      image: "/images/blog-optimized/countninestanding.webp"
-    },
-    {
-      slug: "content-marketing-trends",
-      title: "5 Content Marketing Trends for 2025",
-      date: "2025-02-15",
-      description: "Stay ahead of the curve with these emerging content marketing trends that will shape the industry in 2025.",
-      author: "Jane Smith",
-      tags: ["content", "marketing", "trends"],
-      image: "/images/blog-new/cyberpunk-city-night-1.webp"
-    },
-    {
-      slug: "video-production-guide",
-      title: "The Ultimate Video Production Guide for Brands",
-      date: "2025-02-01",
-      description: "Learn the essential steps to create high-quality video content that resonates with your audience and strengthens your brand.",
-      author: "John Doe",
-      tags: ["video", "production", "guide"],
-      image: "/images/blog/proteus_gemini.jpeg"
-    },
-    {
-      slug: "social-media-strategy",
-      title: "Building an Effective Social Media Strategy",
-      date: "2025-01-20",
-      description: "Discover key principles for developing a social media strategy that drives engagement and supports your business goals.",
-      author: "Alex Johnson",
-      tags: ["social media", "strategy", "digital marketing"],
-      image: "/images/blog-new/cyberpunk-city-night-2.webp"
-    },
-  ];
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function BlogPage() {
+  const posts = await getAllPosts();
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -59,65 +23,94 @@ export default function BlogPage() {
           media production, and the ever-evolving world of digital publishing.
         </p>
 
-        <div className="space-y-12">
-          {posts.map((post) => (
-            <article key={post.slug} className="border-b pb-10 last:border-0 dark:border-gray-800">
-              <div className="grid md:grid-cols-[250px_1fr] gap-6">
-                {post.image && (
-                  <div className="relative w-full h-[180px] rounded-lg overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <h2 className="text-2xl font-bold leading-tight">
-                      <Link href={`/blog/${post.slug}`} className="hover:text-blue-600 dark:hover:text-blue-500">
-                        {post.title}
+        {posts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              No blog posts found. Check back soon for new content!
+            </p>
+            <Link 
+              href="/studio"
+              className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Add your first post in Sanity Studio
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-12">
+            {posts.map((post: Post) => (
+              <article key={post._id} className="border-b pb-10 last:border-0 dark:border-gray-800">
+                <div className="grid md:grid-cols-[250px_1fr] gap-6">
+                  {post.mainImage && (
+                    <div className="relative w-full h-[180px] rounded-lg overflow-hidden">
+                      <Image
+                        src={urlFor(post.mainImage).width(250).height(180).url()}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="grid gap-4">
+                    <div className="space-y-2">
+                      <h2 className="text-2xl font-bold leading-tight">
+                        <Link 
+                          href={`/blog/${post.slug.current}`} 
+                          className="hover:text-blue-600 dark:hover:text-blue-500"
+                        >
+                          {post.title}
+                        </Link>
+                      </h2>
+                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                        <time dateTime={post.publishedAt}>
+                          {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </time>
+                        {post.author && (
+                          <>
+                            <span>•</span>
+                            <span>{post.author.name}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    {post.excerpt && (
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    {post.categories && post.categories.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {post.categories.map((category) => (
+                          <span 
+                            key={category.slug.current}
+                            className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                            style={{
+                              backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
+                              color: category.color?.hex || undefined
+                            }}
+                          >
+                            {category.title}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div>
+                      <Link
+                        href={`/blog/${post.slug.current}`}
+                        className="text-blue-600 hover:underline dark:text-blue-500"
+                      >
+                        Read more →
                       </Link>
-                    </h2>
-                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                      <time dateTime={post.date}>
-                        {new Date(post.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </time>
-                      <span>•</span>
-                      <span>{post.author}</span>
                     </div>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {post.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span 
-                        key={tag} 
-                        className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="text-blue-600 hover:underline dark:text-blue-500"
-                    >
-                      Read more →
-                    </Link>
-                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
