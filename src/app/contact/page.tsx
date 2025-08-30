@@ -230,7 +230,7 @@ export default function ContactPage() {
             )}
           </div>
           
-          {/* Contact Info */}
+          {/* Contact Info - Simplified */}
           <div>
             <div className="rounded-lg border bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-950">
               <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
@@ -242,43 +242,6 @@ export default function ContactPage() {
                       hello@boog.ie
                     </a>
                   </p>
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold">Phone</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    <a href="tel:+3531234567" className="hover:text-blue-600 dark:hover:text-blue-500">
-                      +353 1 234 5678
-                    </a>
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold">Office</h3>
-                  <address className="not-italic text-gray-600 dark:text-gray-400">
-                    123 Creative Street<br />
-                    Dublin 2<br />
-                    Ireland
-                  </address>
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold">Office Hours</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Weekends: Closed
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold">Follow Us</h3>
-                  <div className="flex space-x-4 mt-2">
-                    <a href="https://twitter.com" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-                      Twitter
-                    </a>
-                    <a href="https://instagram.com" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-                      Instagram
-                    </a>
-                    <a href="https://linkedin.com" className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
-                      LinkedIn
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
