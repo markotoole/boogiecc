@@ -20,10 +20,10 @@ export default function AboutPage() {
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
                 Boogie is a modern publishing and media production company
-                dedicated to creating compelling content and meaningful experiences.
+                dedicated to creating and publishing compelling content and meaningful experiences.
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                Founded in 2024, we collaborate with forward-thinking brands and
+                Founded in 2023, we collaborate with forward-thinking brands and
                 organizations to tell stories that resonate and drive results.
               </p>
             </div>
@@ -45,7 +45,7 @@ export default function AboutPage() {
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8">Our Mission</h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
-              Our mission is to elevate brands through exceptional storytelling and
+              Our mission is to elevate artists and brands through exceptional storytelling and
               innovative media production, creating content that informs, inspires,
               and drives meaningful connections.
             </p>
