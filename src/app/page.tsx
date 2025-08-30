@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getFeaturedArtists } from '@/src/lib/artist-queries'
-import { FeaturedArtistCard } from '@/src/components/ArtistCard'
+import { getFeaturedArtists } from '../lib/artist-queries'
+import { FeaturedArtistCard } from '../components/ArtistCard'
 
 export default async function Home() {
   // Fetch featured artists from Sanity
