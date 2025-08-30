@@ -62,7 +62,7 @@ export default async function ArtistsPage() {
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
-                    src="/images/blog/proteus_gemini.jpeg"
+                    src="/images/blog-new/noesis.jpg"
                     alt="Noesis"
                     fill
                     className="object-cover"
@@ -77,9 +77,47 @@ export default async function ArtistsPage() {
                 Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
               </p>
               <div className="mt-auto">
-                <span className="inline-flex items-center text-gray-400 dark:text-gray-500">
-                  Profile Coming Soon
-                </span>
+                <Link 
+                  href="/artists/noesis"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                >
+                  View Full Profile
+                  <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            {/* Blackwood Chapel Profile - Fallback */}
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
+              <div className="mb-6 flex justify-center">
+                <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/blog-new/devils-handshake.jpg"
+                    alt="Blackwood Chapel - Devils Handshake"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Blackwood Chapel</h3>
+              <p className="text-blue-600 dark:text-blue-400 mb-3 font-medium">
+                Dark Ambient Producer
+              </p>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                Blackwood Chapel conjures haunting soundscapes that dwell in the shadows between sacred and profane. Drawing inspiration from gothic architecture, ancient rituals, and the liminal spaces of consciousness, their compositions create immersive worlds of dark beauty.
+              </p>
+              <div className="mt-auto">
+                <Link 
+                  href="/artists/blackwood-chapel"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                >
+                  View Full Profile
+                  <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
