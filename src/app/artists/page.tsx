@@ -62,7 +62,7 @@ export default async function ArtistsPage() {
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
-                    src="/images/blog-new/noesis.jpg"
+                    src="/images/blog-new/noesis.png"
                     alt="Noesis"
                     fill
                     className="object-cover"
@@ -94,7 +94,7 @@ export default async function ArtistsPage() {
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
-                    src="/images/blog-new/devils-handshake.jpg"
+                    src="/images/blog-new/devilshandshake.png"
                     alt="Blackwood Chapel - Devils Handshake"
                     fill
                     className="object-cover"
