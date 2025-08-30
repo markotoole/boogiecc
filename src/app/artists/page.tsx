@@ -101,9 +101,9 @@ export default async function ArtistsPage() {
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Wade Corrigan</h3>
+              <h3 className="text-2xl font-bold mb-2">Blackwood Chapel</h3>
               <p className="text-blue-600 dark:text-blue-400 mb-3 font-medium">
-                Singer, Guitarist & Writer | Blackwood Chapel
+                Wade Corrigan
               </p>
               <p className="text-gray-500 dark:text-gray-400 mb-4">
                 In an era of oversharing and manufactured personas, Wade Corrigan remains an enigma by choice. The singer, guitarist, and primary songwriter for Blackwood Chapel has only recently begun sharing his music with the world, emerging from years of quiet creation with a catalog that speaks to the depth of a life fully lived. Those who know Corrigan describe him as possessing the steady presence of a river—calm on the surface but carrying powerful undercurrents.
