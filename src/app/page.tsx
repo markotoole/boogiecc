@@ -87,21 +87,21 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Proteus Profile */}
+            {/* Noesis Profile */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
                     src="/images/blog/proteus_gemini.jpeg"
-                    alt="Proteus"
+                    alt="Noesis"
                     fill
                     className="object-cover"
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold">Proteus</h3>
+              <h3 className="text-2xl font-bold">Noesis</h3>
               <p className="mt-4 text-gray-500 dark:text-gray-400">
-                Proteus harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
+                Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
               </p>
               <div className="mt-6">
                 <span className="inline-flex items-center text-gray-400 dark:text-gray-500">
