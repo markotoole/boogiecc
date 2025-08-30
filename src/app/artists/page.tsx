@@ -1,5 +1,5 @@
-import { getAllArtists } from '@/src/lib/artist-queries'
-import { ArtistGrid } from '@/src/components/ArtistCard'
+import { getAllArtists } from '../../lib/artist-queries'
+import { ArtistGrid } from '../../components/ArtistCard'
 import Image from "next/image";
 import Link from "next/link";
 
