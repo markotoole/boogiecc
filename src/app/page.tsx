@@ -23,14 +23,6 @@ export default async function Home() {
               <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
                 At boog.ie, we believe in the power of technology to amplify creative voices and build communities around shared passions. Whether you're looking for cutting-edge apps, fresh musical talents, or thought-provoking content, you've found your digital home. Explore our ecosystem of innovation and discover what happens when technical expertise meets artistic vision.
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link 
-                  href="/work" 
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700"
-               
-                  Contact Us
-                </Link>
-              </div>
             </div>
             <div className="flex items-center justify-center">
               <div className="relative h-[350px] w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
