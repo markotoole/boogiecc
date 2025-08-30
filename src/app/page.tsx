@@ -27,8 +27,8 @@ export default async function Home() {
             <div className="flex items-center justify-center">
               <div className="relative h-[350px] w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                 <Image
-                  src="/images/blog-optimized/boogielogoa.webp"
-                  alt="Boogie Media Logo"
+                  src="/images/blog-new/boogiehero.png"
+                  alt="Boogie Hero"
                   fill
                   priority
                   className="object-contain"
