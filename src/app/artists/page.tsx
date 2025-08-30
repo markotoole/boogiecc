@@ -89,28 +89,28 @@ export default async function ArtistsPage() {
               </div>
             </div>
 
-            {/* Blackwood Chapel Profile - Fallback */}
+            {/* Blackwood Chapel (Wade Corrigan) Profile - Fallback */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
                     src="/images/blog-new/devilshandshake.png"
-                    alt="Blackwood Chapel - Devils Handshake"
+                    alt="Wade Corrigan - Blackwood Chapel"
                     fill
                     className="object-cover"
                   />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Blackwood Chapel</h3>
+              <h3 className="text-2xl font-bold mb-2">Wade Corrigan</h3>
               <p className="text-blue-600 dark:text-blue-400 mb-3 font-medium">
-                Dark Ambient Producer
+                Singer, Guitarist & Writer | Blackwood Chapel
               </p>
               <p className="text-gray-500 dark:text-gray-400 mb-4">
-                Blackwood Chapel conjures haunting soundscapes that dwell in the shadows between sacred and profane. Drawing inspiration from gothic architecture, ancient rituals, and the liminal spaces of consciousness, their compositions create immersive worlds of dark beauty.
+                In an era of oversharing and manufactured personas, Wade Corrigan remains an enigma by choice. The singer, guitarist, and primary songwriter for Blackwood Chapel has only recently begun sharing his music with the world, emerging from years of quiet creation with a catalog that speaks to the depth of a life fully lived. Those who know Corrigan describe him as possessing the steady presence of a river—calm on the surface but carrying powerful undercurrents.
               </p>
               <div className="mt-auto">
                 <Link 
-                  href="/artists/blackwood-chapel"
+                  href="/artists/wade-corrigan"
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   View Full Profile
