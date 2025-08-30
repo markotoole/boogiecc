@@ -1,89 +1,106 @@
+import { getAllArtists } from '@/src/lib/artist-queries'
+import { ArtistGrid } from '@/src/components/ArtistCard'
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Artists | Boogie Media",
-  description: "Meet the talented artists in the Boogie collective.",
-};
+export default async function ArtistsPage() {
+  // Fetch all artists from Sanity
+  const artists = await getAllArtists()
 
-export default function ArtistsPage() {
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-12">
-      <div className="mb-12 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-          Our Artists
-        </h1>
-        <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">
-          Meet the talented creators pushing boundaries and defining new sounds in the Boogie collective.
-        </p>
-      </div>
+    <div className="container mx-auto py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold mb-6">Our Artists</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Meet the talented creators pushing boundaries and crafting exceptional work in our collective. 
+            Each artist brings their unique vision and sound to our creative community.
+          </p>
+        </div>
 
-      <div className="grid gap-10 md:grid-cols-2">
-        {/* Count Nine */}
-        <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
-          <Link href="/artists/count-nine" className="block">
-            <div className="relative aspect-video w-full overflow-hidden">
-              <Image
-                src="/images/blog-optimized/countninestanding.webp"
-                alt="Count Nine"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6">
-                <h2 className="text-3xl font-bold text-white">Count Nine</h2>
-                <p className="text-lg text-gray-200">Electronic Music Producer</p>
+        {/* Dynamic Artists from Sanity */}
+        {artists.length > 0 ? (
+          <ArtistGrid artists={artists} showBios={true} maxColumns={3} />
+        ) : (
+          /* Fallback to static content if no Sanity artists */
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+            {/* Count Nine Profile - Fallback */}
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
+              <div className="mb-6 flex justify-center">
+                <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/blog-optimized/countninestanding.webp"
+                    alt="Count Nine"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Count Nine</h3>
+              <p className="text-blue-600 dark:text-blue-400 mb-3 font-medium">
+                Electronic Music Producer
+              </p>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence. Drawing from occult symbolism and quantum physics alike, his productions pulse with otherworldly energy while maintaining dance floor appeal.
+              </p>
+              <div className="mt-auto">
+                <Link 
+                  href="/artists/count-nine"
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                >
+                  View Full Profile
+                  <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
-            <div className="p-6">
-              <p className="text-gray-700 dark:text-gray-300">
-                Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence. With releases like "Ninth Dimension" and "Esoteric Circuit," his music invites listeners into realms where shadows dance with light.
+            
+            {/* Noesis Profile - Fallback */}
+            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
+              <div className="mb-6 flex justify-center">
+                <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/blog/proteus_gemini.jpeg"
+                    alt="Noesis"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Noesis</h3>
+              <p className="text-blue-600 dark:text-blue-400 mb-3 font-medium">
+                Sound Artist
               </p>
-              <span className="mt-4 inline-block text-blue-600 dark:text-blue-400">
-                View Artist Profile →
-              </span>
-            </div>
-          </Link>
-        </div>
-
-        {/* Proteus */}
-        <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
-          <div className="relative aspect-video w-full overflow-hidden">
-            <Image
-              src="/images/blog/proteus_gemini.jpeg"
-              alt="Proteus"
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 p-6">
-              <h2 className="text-3xl font-bold text-white">Proteus</h2>
-              <p className="text-lg text-gray-200">Avant-garde Sound Designer</p>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
+              </p>
+              <div className="mt-auto">
+                <span className="inline-flex items-center text-gray-400 dark:text-gray-500">
+                  Profile Coming Soon
+                </span>
+              </div>
             </div>
           </div>
-          <div className="p-6">
-            <p className="text-gray-700 dark:text-gray-300">
-              Proteus harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures.
+        )}
+
+        {/* Call to Action */}
+        <div className="mt-20 text-center">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-4">Interested in Joining Our Collective?</h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+              We're always looking for talented artists who share our passion for pushing creative boundaries. 
+              If you're creating something exceptional, we'd love to hear from you.
             </p>
-            <span className="mt-4 inline-block text-gray-500 dark:text-gray-400">
-              Profile Coming Soon
-            </span>
+            <Link
+              href="/contact"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700"
+            >
+              Get In Touch
+            </Link>
           </div>
         </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="mt-16 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-center text-white shadow-lg">
-        <h2 className="mb-4 text-3xl font-bold">Join Our Collective</h2>
-        <p className="mx-auto mb-6 max-w-2xl text-lg text-blue-100">
-          We're always looking for innovative artists to join our growing family. If you're pushing boundaries and creating unique sonic experiences, we want to hear from you.
-        </p>
-        <Link
-          href="/contact?subject=Artist Submission"
-          className="inline-flex items-center rounded-lg bg-white px-6 py-3 font-medium text-blue-700 transition-colors hover:bg-gray-100"
-        >
-          Submit Your Work
-        </Link>
       </div>
     </div>
   );
