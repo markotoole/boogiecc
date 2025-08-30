@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "studio": "sanity dev --port=3333"
+    "studio": "sanity dev --port=3333",
+    "migrate:artists": "tsx scripts/migrate-artists.ts",
+    "upload:images": "tsx scripts/upload-artist-images.ts",
+    "setup:artists": "npm run migrate:artists && npm run upload:images"
   },
   "dependencies": {
     "@portabletext/react": "^3.1.0",
@@ -37,6 +40,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.0",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
