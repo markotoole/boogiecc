@@ -1,5 +1,5 @@
-import { getArtistBySlug, getAllArtists } from '@/src/lib/artist-queries'
-import { urlFor } from '@/src/sanity/lib/image'
+import { getArtistBySlug, getAllArtists } from '../../../lib/artist-queries'
+import { urlFor } from '../../../sanity/lib/image'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import Link from 'next/link'
