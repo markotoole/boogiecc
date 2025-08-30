@@ -35,26 +35,36 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      // In a real implementation, this would call an API endpoint
-      // For demo purposes, we'll simulate a successful API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      // Mock success response
-      setFormStatus({
-        submitted: true,
-        error: false,
-        message: "Thank you! Your message has been received. We'll get back to you soon.",
+      // Call the real API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
       });
-      
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        projectType: "",
-        message: "",
-      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setFormStatus({
+          submitted: true,
+          error: false,
+          message: result.message,
+        });
+        
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          company: "",
+          projectType: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.message || 'Form submission failed');
+      }
     } catch (error) {
       console.error("Form submission error:", error);
       setFormStatus({
