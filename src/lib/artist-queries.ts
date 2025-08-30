@@ -1,4 +1,4 @@
-import { client } from '@/src/sanity/lib/client'
+import { client } from '../sanity/lib/client'
 
 // GROQ queries for artists
 export const allArtistsQuery = `
