@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,8 +23,16 @@ function Header() {
   return (
     <header className="bg-black text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold">
-          Boogie
+        <Link href="/" className="flex items-center">
+          <div className="relative h-10 w-32">
+            <Image
+              src="/images/blog-new/boogie_logo_ts.png"
+              alt="Boogie Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
         </Link>
         <nav className="hidden md:flex space-x-6">
           {navLinks.map((link) => (
