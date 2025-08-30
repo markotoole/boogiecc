@@ -60,12 +60,12 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="bg-gray-50 px-4 py-20 dark:bg-gray-900">
+      <section className="px-4 py-20">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold mb-12 text-center">Our Values</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Value 1 */}
-            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-950">
+            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-800">
               <h3 className="text-xl font-bold mb-4">Creativity</h3>
               <p className="text-gray-600 dark:text-gray-400">
                 We approach every project with fresh thinking and innovative ideas,
@@ -73,7 +73,7 @@ export default function AboutPage() {
               </p>
             </div>
             {/* Value 2 */}
-            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-950">
+            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-800">
               <h3 className="text-xl font-bold mb-4">Quality</h3>
               <p className="text-gray-600 dark:text-gray-400">
                 We maintain the highest standards in everything we create,
@@ -81,7 +81,7 @@ export default function AboutPage() {
               </p>
             </div>
             {/* Value 3 */}
-            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-950">
+            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-800">
               <h3 className="text-xl font-bold mb-4">Collaboration</h3>
               <p className="text-gray-600 dark:text-gray-400">
                 We work closely with our clients, building partnerships based on
@@ -89,7 +89,7 @@ export default function AboutPage() {
               </p>
             </div>
             {/* Value 4 */}
-            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-950">
+            <div className="flex flex-col p-6 rounded-lg bg-white shadow-sm dark:bg-gray-800">
               <h3 className="text-xl font-bold mb-4">Impact</h3>
               <p className="text-gray-600 dark:text-gray-400">
                 We focus on creating content that drives real results, whether
