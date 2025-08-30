@@ -1,362 +1,308 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { urlFor } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
-import { portableTextComponents } from '@/lib/portableTextComponents'
+import Image from 'next/image'
+import { urlFor } from '@/src/sanity/lib/image'
 
-interface TextSectionProps {
-  title?: string
-  content: any[]
+// Component for rendering page sections
+export function PageSections({ sections = [] }) {
+  return (
+    <div className="page-sections">
+      {sections.map((section, index) => {
+        switch (section._type) {
+          case 'textSection':
+            return <TextSection key={index} {...section} />
+          case 'imageGallery':
+            return <ImageGallery key={index} {...section} />
+          case 'teamSection':
+            return <TeamSection key={index} {...section} />
+          case 'contactSection':
+            return <ContactSection key={index} {...section} />
+          case 'servicesSection':
+            return <ServicesSection key={index} {...section} />
+          default:
+            return null
+        }
+      })}
+    </div>
+  )
 }
 
-export function TextSection({ title, content }: TextSectionProps) {
+// Hero Section Component
+export function HeroSection({ heroSection }) {
+  if (!heroSection) return null
+
+  const { headline, subheadline, heroImage, ctaButton } = heroSection
+
   return (
-    <div className="py-8">
-      {title && (
-        <h2 className="text-3xl font-bold mb-6">{title}</h2>
+    <section className="relative min-h-[60vh] flex items-center justify-center text-white">
+      {heroImage && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={urlFor(heroImage).url()}
+            alt={heroImage.alt || ''}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
       )}
-      <div className="prose prose-lg max-w-none dark:prose-invert">
-        <PortableText 
-          value={content}
-          components={portableTextComponents}
-        />
+      
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+        {headline && (
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            {headline}
+          </h1>
+        )}
+        
+        {subheadline && (
+          <p className="text-xl md:text-2xl mb-8 text-gray-200">
+            {subheadline}
+          </p>
+        )}
+        
+        {ctaButton?.text && (
+          <a
+            href={ctaButton.link}
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+          >
+            {ctaButton.text}
+          </a>
+        )}
       </div>
-    </div>
+    </section>
   )
 }
 
-interface ImageGalleryProps {
-  title?: string
-  images: Array<{
-    asset: any
-    alt?: string
-    caption?: string
-  }>
-  layout?: 'grid' | 'masonry' | 'carousel'
+// Text Section Component
+function TextSection({ title, content }) {
+  return (
+    <section className="py-16">
+      <div className="container mx-auto px-4 max-w-4xl">
+        {title && (
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            {title}
+          </h2>
+        )}
+        
+        {content && (
+          <div className="prose prose-lg max-w-none">
+            <PortableText value={content} />
+          </div>
+        )}
+      </div>
+    </section>
+  )
 }
 
-export function ImageGallery({ title, images, layout = 'grid' }: ImageGalleryProps) {
-  if (!images || images.length === 0) return null
-
-  const gridClass = layout === 'masonry' 
-    ? 'columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4'
-    : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-
+// Image Gallery Component
+function ImageGallery({ title, images = [], layout = 'grid' }) {
   return (
-    <div className="py-8">
-      {title && (
-        <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
-      )}
-      
-      {layout === 'carousel' ? (
-        <div className="flex gap-4 overflow-x-auto pb-4">
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        {title && (
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            {title}
+          </h2>
+        )}
+        
+        <div className={`
+          ${layout === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : ''}
+          ${layout === 'masonry' ? 'columns-1 md:columns-2 lg:columns-3 gap-6' : ''}
+          ${layout === 'carousel' ? 'flex overflow-x-auto gap-6 pb-4' : ''}
+        `}>
           {images.map((image, index) => (
-            <div key={index} className="flex-shrink-0 w-80">
-              <div className="relative aspect-video rounded-lg overflow-hidden">
+            <div
+              key={index}
+              className={`
+                ${layout === 'carousel' ? 'flex-none w-80' : ''}
+                transition-transform hover:scale-105
+              `}
+            >
+              <div className="relative aspect-video">
                 <Image
-                  src={urlFor(image).width(320).height(240).url()}
-                  alt={image.alt || `Gallery image ${index + 1}`}
+                  src={urlFor(image).url()}
+                  alt={image.alt || ''}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-lg"
                 />
               </div>
               {image.caption && (
-                <p className="text-sm text-gray-600 mt-2 text-center">
+                <p className="mt-2 text-sm text-gray-600 text-center">
                   {image.caption}
                 </p>
               )}
             </div>
           ))}
         </div>
-      ) : (
-        <div className={gridClass}>
-          {images.map((image, index) => (
-            <div key={index} className={layout === 'masonry' ? 'break-inside-avoid' : ''}>
-              <div className={`relative rounded-lg overflow-hidden ${
-                layout === 'masonry' ? 'aspect-auto' : 'aspect-video'
-              }`}>
-                <Image
-                  src={urlFor(image).width(400).height(300).url()}
-                  alt={image.alt || `Gallery image ${index + 1}`}
-                  width={400}
-                  height={300}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              {image.caption && (
-                <p className="text-sm text-gray-600 mt-2">
-                  {image.caption}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+      </div>
+    </section>
   )
 }
 
-interface TeamMember {
-  name: string
-  role: string
-  bio?: string
-  image?: any
-  socialLinks?: {
-    twitter?: string
-    linkedin?: string
-    website?: string
-  }
-}
-
-interface TeamSectionProps {
-  title?: string
-  members: TeamMember[]
-}
-
-export function TeamSection({ title, members }: TeamSectionProps) {
-  if (!members || members.length === 0) return null
-
+// Team Section Component
+function TeamSection({ title, members = [] }) {
   return (
-    <div className="py-12">
-      {title && (
-        <h2 className="text-3xl font-bold mb-12 text-center">{title}</h2>
-      )}
-      
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {members.map((member, index) => (
-          <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md">
-            {member.image && (
-              <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
-                <Image
-                  src={urlFor(member.image).width(128).height(128).url()}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
-            
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-              <p className="text-blue-600 font-medium mb-4">{member.role}</p>
-              
-              {member.bio && (
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {member.bio}
-                </p>
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        {title && (
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            {title}
+          </h2>
+        )}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {members.map((member, index) => (
+            <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
+              {member.image && (
+                <div className="relative w-32 h-32 mx-auto mb-4">
+                  <Image
+                    src={urlFor(member.image).url()}
+                    alt={member.name}
+                    fill
+                    className="object-cover rounded-full"
+                  />
+                </div>
               )}
               
-              {member.socialLinks && (
-                <div className="flex justify-center gap-4">
-                  {member.socialLinks.website && (
-                    <Link 
-                      href={member.socialLinks.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      Website
-                    </Link>
-                  )}
-                  {member.socialLinks.twitter && (
-                    <Link 
-                      href={member.socialLinks.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      Twitter
-                    </Link>
-                  )}
-                  {member.socialLinks.linkedin && (
-                    <Link 
-                      href={member.socialLinks.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      LinkedIn
-                    </Link>
-                  )}
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                {member.role && (
+                  <p className="text-blue-600 mb-3">{member.role}</p>
+                )}
+                {member.bio && (
+                  <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+                )}
+                
+                {member.socialLinks && (
+                  <div className="flex justify-center space-x-4">
+                    {member.socialLinks.twitter && (
+                      <a href={member.socialLinks.twitter} className="text-gray-400 hover:text-blue-500">
+                        Twitter
+                      </a>
+                    )}
+                    {member.socialLinks.linkedin && (
+                      <a href={member.socialLinks.linkedin} className="text-gray-400 hover:text-blue-700">
+                        LinkedIn
+                      </a>
+                    )}
+                    {member.socialLinks.website && (
+                      <a href={member.socialLinks.website} className="text-gray-400 hover:text-gray-700">
+                        Website
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Contact Section Component
+function ContactSection({ title, contactInfo, showContactForm }) {
+  return (
+    <section className="py-16">
+      <div className="container mx-auto px-4 max-w-4xl">
+        {title && (
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            {title}
+          </h2>
+        )}
+        
+        <div className="grid md:grid-cols-2 gap-12">
+          {contactInfo && (
+            <div className="space-y-6">
+              {contactInfo.email && (
+                <div>
+                  <h3 className="font-semibold mb-2">Email</h3>
+                  <a href={`mailto:${contactInfo.email}`} className="text-blue-600 hover:underline">
+                    {contactInfo.email}
+                  </a>
+                </div>
+              )}
+              
+              {contactInfo.phone && (
+                <div>
+                  <h3 className="font-semibold mb-2">Phone</h3>
+                  <a href={`tel:${contactInfo.phone}`} className="text-blue-600 hover:underline">
+                    {contactInfo.phone}
+                  </a>
+                </div>
+              )}
+              
+              {contactInfo.address && (
+                <div>
+                  <h3 className="font-semibold mb-2">Address</h3>
+                  <address className="not-italic text-gray-600">
+                    {contactInfo.address}
+                  </address>
                 </div>
               )}
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-interface ContactSectionProps {
-  title?: string
-  contactInfo?: {
-    email?: string
-    phone?: string
-    address?: string
-  }
-  showContactForm?: boolean
-}
-
-export function ContactSection({ title, contactInfo, showContactForm }: ContactSectionProps) {
-  return (
-    <div className="py-12">
-      {title && (
-        <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
-      )}
-      
-      <div className="grid gap-8 lg:grid-cols-2">
-        {contactInfo && (
-          <div className="space-y-6">
-            <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
-            
-            {contactInfo.email && (
-              <div>
-                <strong className="block text-gray-900 dark:text-white mb-1">Email</strong>
-                <Link 
-                  href={`mailto:${contactInfo.email}`}
-                  className="text-blue-600 hover:underline"
-                >
-                  {contactInfo.email}
-                </Link>
-              </div>
-            )}
-            
-            {contactInfo.phone && (
-              <div>
-                <strong className="block text-gray-900 dark:text-white mb-1">Phone</strong>
-                <Link 
-                  href={`tel:${contactInfo.phone}`}
-                  className="text-blue-600 hover:underline"
-                >
-                  {contactInfo.phone}
-                </Link>
-              </div>
-            )}
-            
-            {contactInfo.address && (
-              <div>
-                <strong className="block text-gray-900 dark:text-white mb-1">Address</strong>
-                <p className="text-gray-600 dark:text-gray-400 whitespace-pre-line">
-                  {contactInfo.address}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-        
-        {showContactForm && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Send us a message</h3>
-            <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">
-              <p className="text-gray-600 dark:text-gray-400">
-                Contact form integration can be added here. This could connect to services like 
-                Formspree, Netlify Forms, or a custom backend.
+          )}
+          
+          {showContactForm && (
+            <div>
+              <p className="text-gray-600">
+                Ready to get started? <a href="/contact" className="text-blue-600 hover:underline">Contact us</a> to discuss your project.
               </p>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
-interface Service {
-  name: string
-  description: string
-  icon?: any
-  features?: string[]
-}
-
-interface ServicesSectionProps {
-  title?: string
-  services: Service[]
-}
-
-export function ServicesSection({ title, services }: ServicesSectionProps) {
-  if (!services || services.length === 0) return null
-
+// Services Section Component
+function ServicesSection({ title, services = [] }) {
   return (
-    <div className="py-12">
-      {title && (
-        <h2 className="text-3xl font-bold mb-12 text-center">{title}</h2>
-      )}
-      
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, index) => (
-          <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md">
-            {service.icon && (
-              <div className="w-16 h-16 mx-auto mb-4 relative">
-                <Image
-                  src={urlFor(service.icon).width(64).height(64).url()}
-                  alt={`${service.name} icon`}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            )}
-            
-            <h3 className="text-xl font-semibold mb-3 text-center">{service.name}</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4 text-center">
-              {service.description}
-            </p>
-            
-            {service.features && service.features.length > 0 && (
-              <ul className="space-y-2">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-sm">
-                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0"></span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        {title && (
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            {title}
+          </h2>
+        )}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-sm border">
+              {service.icon && (
+                <div className="w-12 h-12 mb-4">
+                  <Image
+                    src={urlFor(service.icon).url()}
+                    alt={service.name}
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                  />
+                </div>
+              )}
+              
+              <h3 className="text-xl font-semibold mb-3">{service.name}</h3>
+              
+              {service.description && (
+                <p className="text-gray-600 mb-4">{service.description}</p>
+              )}
+              
+              {service.features && service.features.length > 0 && (
+                <ul className="space-y-2">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="text-sm text-gray-500 flex items-center">
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
-}
-
-// Main section renderer component
-interface PageSectionProps {
-  section: {
-    _type: string
-    _key: string
-    [key: string]: any
-  }
-}
-
-export function PageSection({ section }: PageSectionProps) {
-  switch (section._type) {
-    case 'textSection':
-      return <TextSection title={section.title} content={section.content} />
-    
-    case 'imageGallery':
-      return (
-        <ImageGallery 
-          title={section.title}
-          images={section.images}
-          layout={section.layout}
-        />
-      )
-    
-    case 'teamSection':
-      return <TeamSection title={section.title} members={section.members} />
-    
-    case 'contactSection':
-      return (
-        <ContactSection 
-          title={section.title}
-          contactInfo={section.contactInfo}
-          showContactForm={section.showContactForm}
-        />
-      )
-    
-    case 'servicesSection':
-      return <ServicesSection title={section.title} services={section.services} />
-    
-    default:
-      return null
-  }
 }
