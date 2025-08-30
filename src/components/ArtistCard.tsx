@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { urlFor } from '@/src/sanity/lib/image'
+import { urlFor } from '../sanity/lib/image'
 
 interface Artist {
   _id: string
