@@ -2,222 +2,332 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Count Nine | Boogie Media",
-  description: "Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence.",
+  title: "Into the Shadows: An Exclusive Interview with Count Nine | Boogie Media",
+  description: "Electronic music's most enigmatic figure, Count Nine, sits down with Boogie in a rare interview to discuss his creative process, occult influences, and the hidden knowledge behind his atmospheric soundscapes.",
 };
 
 export default function CountNinePage() {
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-12">
-      {/* Hero Section */}
-      <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-center">
-        <div className="relative order-2 w-full lg:order-1 lg:w-1/2 space-y-6">
-          <div className="aspect-[3/4] overflow-hidden rounded-xl shadow-xl">
-            <Image
-              src="/images/blog-optimized/countninestanding.webp"
-              alt="Count Nine artist photo"
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-          <div className="aspect-square overflow-hidden rounded-xl shadow-xl">
-            <Image
-              src="/images/blog/count_nine_album_cover.png"
-              alt="Count Nine album cover - Ninth Dimension EP"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full"
-            />
+    <article className="prose prose-lg dark:prose-invert mx-auto max-w-4xl px-4 py-12">
+      <header className="mb-12 text-center">
+        <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
+          Into the Shadows: An Exclusive Interview with Count Nine
+        </h1>
+        <p className="mt-4 text-xl text-gray-600 dark:text-gray-300 italic">
+          Electronic music's most enigmatic figure, Count Nine, sits down with Boogie in a rare interview to discuss his creative process, occult influences, and the hidden knowledge behind his atmospheric soundscapes.
+        </p>
+        <div className="mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+          <time dateTime="2025-02-15">February 15, 2025</time>
+          <span>•</span>
+          <span>15 min read</span>
+        </div>
+      </header>
+
+      <div className="relative aspect-video mb-12 overflow-hidden rounded-xl">
+        <Image
+          src="/images/blog-optimized/countninestanding.webp"
+          alt="Count Nine"
+          fill
+          priority
+          className="object-cover"
+        />
+      </div>
+
+      <div className="space-y-6">
+        <p>
+          <strong>BOOGIE:</strong> Thank you for agreeing to this interview, Count. You've managed to maintain quite an air of mystery around yourself despite your growing popularity.
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Cheers for having me. Mystery isn't necessarily something I cultivate intentionally, but I do value the separation between the art and the person behind it. There's something powerful about letting the music speak for itself.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> Let's start at the beginning. How did Count Nine come into existence? What drew you to electronic music specifically?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> It's quite a winding path, really. I grew up in the north of England surrounded by industrial landscapes—abandoned factories, disused railway lines, that sort of thing. There was always this strange juxtaposition of nature reclaiming these mechanical spaces. That tension between the organic and synthetic has always fascinated me.
+        </p>
+        
+        <p>
+          As for electronic music, I stumbled upon my dad's old record collection when I was about thirteen. He had these obscure Tangerine Dream and Klaus Schulze albums. The first time I heard those analogue synthesisers creating these vast, otherworldly soundscapes, something clicked. It felt like they were tapping into frequencies that existed just beyond normal perception.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> So your musical journey began with those 70s electronic pioneers. How did that evolve into what we now know as Count Nine?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> It wasn't immediate. I spent my teens playing in various post-punk bands, but I was always the one pushing to incorporate more electronic elements. By my early twenties, I'd saved enough to buy my first proper synths and a sampler. I'd spend nights in my bedroom studio exploring sounds, trying to create these sonic doorways—pieces that could transport the listener somewhere else.
+        </p>
+        
+        <p>
+          The Count Nine project specifically began about eight years ago after a particularly intense period in my life. I'd been studying various esoteric traditions and experimenting with meditation techniques that altered my relationship with sound. The name itself came during one of these sessions—the number nine has significant vibrational properties in numerology and appears consistently throughout various mystical traditions.
+        </p>
+
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 my-10">
+          <blockquote className="text-xl italic text-gray-700 dark:text-gray-300">
+            "For me, music isn't just entertainment—it's a technology for consciousness transformation."
+          </blockquote>
+        </div>
+        
+        <p>
+          <strong>BOOGIE:</strong> That's fascinating. Your work often incorporates what some might call "occult" themes. Is this a genuine interest, or more of an aesthetic choice?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Oh, it's absolutely genuine. I'd even hesitate to use the term "occult" as it's often misunderstood. The word simply means "hidden" or "concealed," and I'm interested in knowledge systems that explore the less visible aspects of reality. I draw heavily from Hermeticism, sacred geometry, and various mystical traditions that examine consciousness and its relationship to sound and frequency.
+        </p>
+        
+        <p>
+          For me, music isn't just entertainment—it's a technology for consciousness transformation. The ancient Greeks understood this with their concept of "mousike"—the art of the Muses that could induce different states of being. Various shamanic traditions use rhythmic sound to facilitate journeys between different layers of reality. I'm trying to create music that operates on multiple levels—something you can dance to, but that might also trigger something deeper if you're receptive to it.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> Can you elaborate on how these esoteric interests directly influence your production process?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Certainly. Take my album "Geometries of Night," for example. Each track was composed around specific sacred geometry ratios, with tempos and key signatures chosen for their numerical relationships. The track "Septagram Cipher" is built around a time signature of 7/4, with melodic patterns that create heptagrams when visualised. These aren't just arbitrary choices—they're attempts to encode specific energetic patterns into the music.
+        </p>
+        
+        <p>
+          I also work extensively with field recordings from locations with particular energetic properties—stone circles, ancient wells, caves with certain acoustic qualities. These recordings are often barely perceptible in the final mix, but they create a certain atmosphere, a subtle layer that affects the overall experience.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> That's quite meticulous. Do you find this mathematical, almost scientific approach conflicts with the intuitive aspect of creating music?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Not at all. I see them as complementary paths to the same destination. The structured elements—the sacred geometries, numerological correspondences—they provide a framework, almost like creating a ritual space. But within that framework, intuition and feeling guide the process. It's similar to how jazz musicians might improvise within chord changes, or how ceremonial magicians will create a precisely measured ritual space but then work intuitively within it.
+        </p>
+        
+        <p>
+          Some of my best work happens when I've set up these structural elements and then enter a flow state where the conscious mind steps aside. In those moments, it doesn't feel like I'm creating the music—more like I'm receiving it or channelling it from elsewhere.
+        </p>
+
+        <div className="relative aspect-video my-10 overflow-hidden rounded-xl">
+          <Image
+            src="/images/blog/count_nine_album_cover.png"
+            alt="Count Nine - Geometries of Night Album Cover"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 p-6">
+            <p className="text-white text-sm">Count Nine's "Geometries of Night" album incorporates sacred geometry principles in its composition.</p>
           </div>
         </div>
         
-        <div className="order-1 lg:order-2 lg:w-1/2 lg:pl-12">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Count Nine
-          </h1>
-          <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300">
-            <p>
-              Count Nine crafts hypnotic electronic soundscapes that bridge the gap between darkness and transcendence. Drawing from occult symbolism and quantum physics alike, his productions pulse with otherworldly energy while maintaining dance floor appeal.
-            </p>
-            <p>
-              With releases like "Ninth Dimension" and "Esoteric Circuit," Count Nine invites listeners into a realm where shadows dance with light, revealing deeper truths through carefully constructed sonic journeys.
-            </p>
-            <p>
-              His performances are immersive rituals, transforming venues into temporary temples where collective consciousness expands through rhythmic communion.
-            </p>
-          </div>
-          
-          <div className="mt-6 mb-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
+        <p>
+          <strong>BOOGIE:</strong> That touches on something I wanted to ask. There's often talk in artistic circles about creativity coming from somewhere "beyond." Is that something you relate to?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Absolutely. The ancient Greeks had this concept of the "daemon"—not in the demonic sense, but as a mediating spirit that would deliver inspiration to the artist. Plato discussed how poets would enter states of "divine madness" where they became vessels for something beyond themselves. Many traditions have similar concepts—the Muse, the Holy Guardian Angel in certain mystical systems, Jung's collective unconscious.
+        </p>
+        
+        <p>
+          When I'm in deep flow states during creation, there's definitely a sense of tapping into something larger than my individual consciousness. I've experienced sessions where I've looked up after what felt like 20 minutes to discover that hours have passed, and I've created something that feels beyond my normal capabilities. It sounds bizarre to those who haven't experienced it, but many artists across disciplines report similar phenomena.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> Your music often features samples that sound like ancient chants or ritual recordings. Where do these come from?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> I've travelled extensively collecting field recordings from various ceremonies and traditional practices—always with permission, of course. I've recorded Sufi dhikr ceremonies, Greek Orthodox chants, and various indigenous vocal traditions. There's something universal in these trance-inducing vocal techniques that transcends specific cultural contexts.
+        </p>
+        
+        <p>
+          I also work with voice artists who specialise in overtone singing and extended vocal techniques to create original material that carries a similar energetic quality. The human voice is perhaps the most powerful instrument we have—it's our most direct means of expression, and it affects listeners on a deeply visceral level.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> Let's talk about your production setup. Are you primarily hardware-based, or do you work in the digital domain?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> It's very much a hybrid approach. I'm not a purist in either direction. I have a core collection of analogue synthesisers—several vintage pieces like the Roland Jupiter-8 and Korg MS-20, alongside modern modular systems. There's something irreplaceable about the physical interaction with hardware and the subtle imperfections and organic quality of analogue circuits.
+        </p>
+        
+        <p>
+          That said, I extensively use digital tools as well. I often begin sketching ideas in Ableton Live, and I use various spectral processing plugins that allow for manipulations that would be impossible in the analogue domain. I'm particularly interested in convolution reverbs that can imprint the acoustic properties of specific spaces onto sounds—like the resonant frequencies of ancient chambers or caves.
+        </p>
+        
+        <p>
+          The final mixing and mastering stage is usually a combination of analogue summing through a vintage console and digital precision tools. It's about using whatever serves the specific sound I'm trying to achieve rather than being dogmatic about methodology.
+        </p>
+
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 my-10">
+          <blockquote className="text-xl italic text-gray-700 dark:text-gray-300">
+            "At its best, a live show should function like a contemporary techno-shamanic ritual."
+          </blockquote>
+        </div>
+        
+        <p>
+          <strong>BOOGIE:</strong> Your live performances are known for their immersive quality. How do you approach translating your studio work to the live environment?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> The live experience is fundamentally different from the recorded one, so I never try to simply reproduce the albums. Instead, I deconstruct the material into stems and elements that can be recombined and manipulated in real-time. I use a combination of hardware sequencers, samplers, and synthesisers alongside custom software that allows for certain generative elements.
+        </p>
+        
+        <p>
+          What's particularly important to me is that there's genuine risk involved—sections where I don't precisely know what will happen. That edge of potential failure keeps me present in a way that simply triggering pre-arranged clips wouldn't. The audience can sense that tension, that aliveness.
+        </p>
+        
+        <p>
+          I also work closely with visual artists who create reactive projections that respond to specific frequency ranges in the music. The goal is to create a temporary autonomous zone—a space where normal consciousness can be suspended for the duration of the performance. At its best, a live show should function like a contemporary techno-shamanic ritual.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> You mention shamanic ritual, which brings me to something many of your followers have noticed—there seems to be a narrative thread connecting your albums, particularly the trilogy of "Liminal Vectors," "Geometries of Night," and "Ninth Keystone." Is there an intentional progression there?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Very perceptive of you to notice. Yes, those three albums were conceived as a unified work exploring different stages of initiatory experience. "Liminal Vectors" deals with threshold states—the dissolution of ordinary boundaries of perception that occurs at the beginning of any significant consciousness shift. Musically, it's the most chaotic of the three, with structures that constantly destabilise just as they seem to form.
+        </p>
+        
+        <p>
+          "Geometries of Night" represents the confrontation with hidden aspects of the self and reality that occurs once those boundaries have been crossed. It's structured around the classical elements and their corresponding psychological states.
+        </p>
+        
+        <p>
+          "Ninth Keystone" completes the journey with the integration of these experiences and the establishment of new perceptual frameworks. It's the most melodically resolved of the three, though still maintaining tension between harmony and dissonance.
+        </p>
+        
+        <p>
+          Together, they map a psychological territory that will be familiar to anyone who has undergone significant inner transformation, whether through mystical practice, psychedelic experience, or other means of consciousness exploration.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> That's quite ambitious conceptually. Do you worry that these deeper layers might be lost on casual listeners?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Not at all. Music works simultaneously on multiple levels. Someone can enjoy these albums purely as atmospheric electronic music without engaging with the conceptual frameworks behind them. But for those who are interested in going deeper, the layers are there to be discovered.
+        </p>
+        
+        <p>
+          I include certain clues in the artwork, track titles, and accompanying materials that can serve as entry points for those who wish to explore further. There's something powerful about this approach—allowing each listener to engage at their own level of interest and readiness.
+        </p>
+        
+        <p>
+          I've received messages from people who initially connected with the music on a purely aesthetic level but gradually became curious about the references and symbolism, which led them to explore these traditions independently. That's deeply satisfying—when the music serves as a doorway to deeper inquiry.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> You've collaborated with several other artists who work with similar themes—Buried Frequencies, Seventh Mirror, The Luminous. How do these collaborations come about?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Usually quite organically. The community of musicians exploring these territories is relatively small, and we tend to find each other. Sometimes it begins with mutual appreciation of each other's work, which leads to conversations about process and philosophy, which naturally evolves into collaborative projects.
+        </p>
+        
+        <p>
+          What's interesting is how different the approaches can be despite similar thematic interests. Buried Frequencies, for instance, works much more with generative systems and chance operations inspired by divinatory practices, while Seventh Mirror is deeply rooted in traditional folk music forms recontextualised through electronic processing.
+        </p>
+        
+        <p>
+          These collaborations are valuable precisely because they push me outside my established methods. It's easy to fall into comfortable patterns when working alone, but having to accommodate another artist's perspective forces new solutions and discoveries.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> What can you tell us about your upcoming project? There have been some cryptic teasers on your social media.
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> I'm working on something quite different from my previous material. Without revealing too much, it involves extensive work with a 40-piece choir, recording in various sacred acoustic spaces across Europe. I'm interested in the way certain architectural spaces were designed specifically to enhance particular frequencies and create specific states of consciousness in listeners.
+        </p>
+        
+        <p>
+          The project explores the concept of "acoustic theology"—the idea that certain sound frequencies and combinations can induce mystical states of consciousness. It's less electronic than my previous work, though those elements are still present. It's been a massive undertaking logistically, but the results have been beyond what I could have imagined.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> That sounds incredibly ambitious. When might we expect to hear the results?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> The recording process is nearly complete, but the mixing and mastering will take considerable time due to the complexity of the material. I'm looking at a release sometime in the late autumn. It will be accompanied by a film documenting the recording process and exploring the acoustic properties of these sacred spaces.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> For those new to your work, what album would you recommend as an entry point?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Probably "Geometries of Night." It strikes a balance between the more accessible elements of my sound and the deeper conceptual aspects. The track "Fibonacci's Echo" has resonated with many first-time listeners—it has recognisable melodic and rhythmic elements while still containing the atmospheric qualities that define my work.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> Finally, what advice would you give to emerging artists who are interested in exploring the intersection of electronic music and esoteric concepts?
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> I'd say start with genuine curiosity and respect for the traditions you're drawing from. There's a difference between superficial aesthetic borrowing and meaningful engagement with these knowledge systems. Read widely, practice consistently, and develop your own relationship with these concepts rather than simply appropriating symbols.
+        </p>
+        
+        <p>
+          Technically, I'd recommend developing a deep understanding of sound design fundamentals. The ability to create and shape your own sounds rather than relying on presets gives you a much broader palette for expression. Particularly useful is an understanding of harmonic relationships and how different frequency combinations affect human psychology.
+        </p>
+        
+        <p>
+          Most importantly, trust your intuition. These realms of knowledge are ultimately about developing your own direct relationship with the hidden aspects of reality. Use the traditions as guidelines and frameworks, but don't be afraid to follow your own path when it diverges from established methods. The most interesting work happens at these junctures where personal experience meets traditional knowledge.
+        </p>
+        
+        <p>
+          <strong>BOOGIE:</strong> Thank you for sharing these insights. It's rare to get such a detailed glimpse into your creative world.
+        </p>
+        
+        <p>
+          <strong>COUNT NINE:</strong> Thank you for the thoughtful questions. It's been a pleasure.
+        </p>
+      </div>
+
+      <footer className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800">
+        <p className="text-gray-500 dark:text-gray-400 italic">
+          Count Nine's latest album "Geometries of Night" is available now on all major streaming platforms. His upcoming choir project is scheduled for release in autumn 2025.
+        </p>
+        
+        <div className="mt-12">
+          <h3 className="text-lg font-semibold mb-4">Discover More</h3>
+          <div className="grid gap-6 sm:grid-cols-2">
             <Link 
               href="/blog/count-nine-interview" 
-              className="flex items-center space-x-3 text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+              className="group flex items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-              </svg>
-              <span className="font-medium">Read our exclusive interview: "Into the Shadows: An Exclusive Interview with Count Nine"</span>
+              <div className="mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <div>
+                <h4 className="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Full Interview</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Read the complete interview in our blog</p>
+              </div>
+            </Link>
+            
+            <Link 
+              href="/artists" 
+              className="group flex items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+            >
+              <div className="mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div>
+                <h4 className="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">All Artists</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Explore our complete artist roster</p>
+              </div>
             </Link>
           </div>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a 
-              href="https://soundcloud.com/countnine" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-3 text-sm font-medium text-white transition-all hover:opacity-90"
-            >
-              SoundCloud
-            </a>
-            <a 
-              href="https://instagram.com/countninemusic" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3 text-sm font-medium text-white transition-all hover:opacity-90"
-            >
-              Instagram
-            </a>
-            <a 
-              href="https://spotify.com/artist/countnine" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 text-sm font-medium text-white transition-all hover:opacity-90"
-            >
-              Spotify
-            </a>
-          </div>
         </div>
-      </div>
-      
-      {/* Discography Section */}
-      <section className="mb-16">
-        <h2 className="mb-8 text-3xl font-bold">Discography</h2>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="overflow-hidden rounded-lg bg-white shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
-            <div className="relative aspect-square w-full">
-              <Image
-                src="/images/blog/count_nine_album_cover.png"
-                alt="Ninth Dimension EP"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="mb-2 text-xl font-bold">Ninth Dimension EP</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Released: 2023
-              </p>
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
-                A journey through parallel realities and quantum possibilities, featuring the hit track "Quantum Pulse".
-              </p>
-            </div>
-          </div>
-          
-          <div className="overflow-hidden rounded-lg bg-white shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
-            <div className="relative aspect-square w-full bg-gradient-to-br from-indigo-900 to-purple-900">
-              <div className="absolute inset-0 flex items-center justify-center text-white opacity-80">
-                <span className="text-5xl font-bold">EC</span>
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="mb-2 text-xl font-bold">Esoteric Circuit</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Released: 2022
-              </p>
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
-                A deep exploration of ritualistic rhythms and ethereal soundscapes that transcend conventional electronic music.
-              </p>
-            </div>
-          </div>
-          
-          <div className="overflow-hidden rounded-lg bg-white shadow-lg transition-all hover:shadow-xl dark:bg-gray-800">
-            <div className="relative aspect-square w-full bg-gradient-to-br from-gray-900 to-black">
-              <div className="absolute inset-0 flex items-center justify-center text-white opacity-80">
-                <span className="text-5xl font-bold">DMD</span>
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="mb-2 text-xl font-bold">Dark Matter Descent</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Released: 2021
-              </p>
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
-                Count Nine's debut release, establishing his signature blend of dark atmospheric textures and driving beats.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Upcoming Shows Section */}
-      <section className="mb-16">
-        <h2 className="mb-8 text-3xl font-bold">Upcoming Shows</h2>
-        <div className="overflow-hidden rounded-lg bg-white shadow-md dark:bg-gray-800">
-          <div className="divide-y divide-gray-200 dark:divide-gray-700">
-            <div className="flex flex-col p-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-xl font-bold">Quantum Field Festival</h3>
-                <p className="text-gray-600 dark:text-gray-300">Berlin, Germany</p>
-              </div>
-              <div className="mt-4 sm:mt-0">
-                <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                  June 15, 2025
-                </span>
-              </div>
-            </div>
-            
-            <div className="flex flex-col p-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-xl font-bold">Ethereal Nights</h3>
-                <p className="text-gray-600 dark:text-gray-300">London, UK</p>
-              </div>
-              <div className="mt-4 sm:mt-0">
-                <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                  July 8, 2025
-                </span>
-              </div>
-            </div>
-            
-            <div className="flex flex-col p-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-xl font-bold">Mystic Underground</h3>
-                <p className="text-gray-600 dark:text-gray-300">Tokyo, Japan</p>
-              </div>
-              <div className="mt-4 sm:mt-0">
-                <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                  August 22, 2025
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Contact Section */}
-      <section>
-        <div className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white shadow-lg">
-          <div className="grid gap-8 md:grid-cols-2">
-            <div>
-              <h2 className="mb-4 text-3xl font-bold">Connect with Count Nine</h2>
-              <p className="mb-6">
-                For bookings, collaborations, or press inquiries, please get in touch.
-              </p>
-              <Link
-                href="/contact?artist=count-nine"
-                className="inline-flex items-center rounded-lg bg-white px-6 py-3 font-medium text-blue-700 transition-colors hover:bg-gray-100"
-              >
-                Contact
-              </Link>
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-lg text-blue-100">
-                "My mission is to create sonic experiences that transport listeners beyond the ordinary, into realms where music becomes a vehicle for transformation and collective awakening."
-              </p>
-              <p className="mt-4 font-medium italic">— Count Nine</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      </footer>
+    </article>
   );
 }
