@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getPageBySlug } from '@/lib/page-queries'
 import { PageSections } from '@/components/PageSections'
+import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -82,13 +83,67 @@ export default async function DynamicPage({ params }: PageProps) {
         <PageSections sections={page.sections} />
       )}
 
-      {/* Main Content */}
+      {/* Main Content - Now properly renders with PortableText */}
       {page.content && (
         <section className="px-4 py-20">
           <div className="container mx-auto max-w-4xl">
             <div className="prose prose-lg dark:prose-invert mx-auto">
-              {/* You'll need to render the blockContent here */}
-              {/* This requires a PortableText component */}
+              <PortableText 
+                value={page.content}
+                components={{
+                  block: {
+                    // Customize block styles if needed
+                    normal: ({children}) => <p className="mb-6">{children}</p>,
+                    h1: ({children}) => <h1 className="text-4xl font-bold mb-6">{children}</h1>,
+                    h2: ({children}) => <h2 className="text-3xl font-bold mb-4">{children}</h2>,
+                    h3: ({children}) => <h3 className="text-2xl font-bold mb-4">{children}</h3>,
+                    h4: ({children}) => <h4 className="text-xl font-bold mb-3">{children}</h4>,
+                    blockquote: ({children}) => (
+                      <blockquote className="border-l-4 border-blue-500 pl-6 italic my-6">
+                        {children}
+                      </blockquote>
+                    ),
+                  },
+                  list: {
+                    bullet: ({children}) => <ul className="list-disc pl-6 mb-6">{children}</ul>,
+                    number: ({children}) => <ol className="list-decimal pl-6 mb-6">{children}</ol>,
+                  },
+                  listItem: ({children}) => <li className="mb-2">{children}</li>,
+                  marks: {
+                    strong: ({children}) => <strong className="font-bold">{children}</strong>,
+                    em: ({children}) => <em className="italic">{children}</em>,
+                    link: ({value, children}) => (
+                      <a 
+                        href={value.href} 
+                        className="text-blue-600 hover:text-blue-800 underline"
+                        target={value.blank ? '_blank' : undefined}
+                        rel={value.blank ? 'noopener noreferrer' : undefined}
+                      >
+                        {children}
+                      </a>
+                    ),
+                  },
+                  types: {
+                    // Handle custom types like images in the content
+                    image: ({value}) => (
+                      <div className="my-8">
+                        <Image
+                          src={urlFor(value).url()}
+                          alt={value.alt || ''}
+                          width={800}
+                          height={600}
+                          className="rounded-lg mx-auto"
+                        />
+                        {value.caption && (
+                          <p className="text-center text-sm text-gray-600 mt-2">
+                            {value.caption}
+                          </p>
+                        )}
+                      </div>
+                    ),
+                  },
+                }}
+              />
             </div>
           </div>
         </section>
