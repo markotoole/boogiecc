@@ -1,3 +1,10 @@
+Of course. Here is the complete, updated code for your homepage.
+
+The changes are in the "Noesis Profile - Fallback" section, where the image has been updated and the "Profile Coming Soon" text has been replaced with a link.
+
+-----
+
+```javascript
 import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedArtists } from '../lib/artist-queries'
@@ -92,8 +99,9 @@ export default async function Home() {
               <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
                 <div className="mb-6 flex justify-center">
                   <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                    {/* --- CHANGE 1: Image source updated --- */}
                     <Image
-                      src="/images/blog/proteus_gemini.jpeg"
+                      src="/images/noesis.jpg"
                       alt="Noesis"
                       fill
                       className="object-cover"
@@ -104,10 +112,17 @@ export default async function Home() {
                 <p className="mt-4 text-gray-500 dark:text-gray-400">
                   Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
                 </p>
+                {/* --- CHANGE 2: Span replaced with Link --- */}
                 <div className="mt-6">
-                  <span className="inline-flex items-center text-gray-400 dark:text-gray-500">
-                    Profile Coming Soon
-                  </span>
+                  <Link
+                    href="https://example.com/link-to-noesis-artist-page"
+                    className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
+                    View Artist Page
+                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -208,3 +223,4 @@ export default async function Home() {
     </>
   );
 }
+```
