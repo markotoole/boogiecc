@@ -93,7 +93,7 @@ export default async function Home() {
                 <div className="mb-6 flex justify-center">
                   <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                     <Image
-                      src="/images/noesis.jpg"
+                      src="/images/noesis.png"
                       alt="Noesis"
                       fill
                       className="object-cover"
@@ -102,11 +102,11 @@ export default async function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">Noesis</h3>
                 <p className="mt-4 text-gray-500 dark:text-gray-400">
-                  Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
+                  Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting sounds with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
                 </p>
                 <div className="mt-6">
                   <Link
-                    href="https://example.com/link-to-noesis-artist-page"
+                    href="/artists/noesis"
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                   >
                     View Artist Page
