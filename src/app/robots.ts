@@ -7,7 +7,7 @@ export default function robots() {
         disallow: ['/studio/', '/api/'],
       }
     ],
-    sitemap: 'https://boogiecc.vercel.app/sitemap.xml',
-    host: 'https://boogiecc.vercel.app'
+    sitemap: 'https://boog.ie/sitemap.xml',
+    host: 'https://boog.ie'
   }
 }
