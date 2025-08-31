@@ -4,6 +4,7 @@ import { PageSections } from '@/components/PageSections'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
+import CustomBlockRenderer from '@/components/CustomBlockRenderer'
 
 interface PageProps {
   params: {
@@ -83,16 +84,15 @@ export default async function DynamicPage({ params }: PageProps) {
         <PageSections sections={page.sections} />
       )}
 
-      {/* Main Content - Now properly renders with PortableText */}
+      {/* Main Content with Enhanced Custom Block Support */}
       {page.content && (
         <section className="px-4 py-20">
-          <div className="container mx-auto max-w-4xl">
-            <div className="prose prose-lg dark:prose-invert mx-auto">
+          <div className="container mx-auto max-w-6xl">
+            <div className="prose prose-lg dark:prose-invert mx-auto max-w-none">
               <PortableText 
                 value={page.content}
                 components={{
                   block: {
-                    // Customize block styles if needed
                     normal: ({children}) => <p className="mb-6">{children}</p>,
                     h1: ({children}) => <h1 className="text-4xl font-bold mb-6">{children}</h1>,
                     h2: ({children}) => <h2 className="text-3xl font-bold mb-4">{children}</h2>,
@@ -124,7 +124,7 @@ export default async function DynamicPage({ params }: PageProps) {
                     ),
                   },
                   types: {
-                    // Handle custom types like images in the content
+                    // Handle regular images in content
                     image: ({value}) => (
                       <div className="my-8">
                         <Image
@@ -139,6 +139,25 @@ export default async function DynamicPage({ params }: PageProps) {
                             {value.caption}
                           </p>
                         )}
+                      </div>
+                    ),
+                    // Handle code blocks
+                    codeBlock: ({value}) => (
+                      <div className="my-8">
+                        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                          {value.language && (
+                            <div className="text-gray-400 text-sm mb-2">{value.language}</div>
+                          )}
+                          <pre className="text-gray-100">
+                            <code>{value.code}</code>
+                          </pre>
+                        </div>
+                      </div>
+                    ),
+                    // Handle custom blocks with our new renderer
+                    customBlock: ({value}) => (
+                      <div className="not-prose">
+                        <CustomBlockRenderer value={value} />
                       </div>
                     ),
                   },
