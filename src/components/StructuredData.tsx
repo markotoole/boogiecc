@@ -21,10 +21,10 @@ export const getOrganizationStructuredData = () => {
     "@type": "Organization",
     "name": "Boogie",
     "description": "Professional music production and artist management services",
-    "url": "https://boogiecc.vercel.app",
+    "url": "https://boog.ie",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://boogiecc.vercel.app/images/blog-new/boogieredw.png"
+      "url": "https://boog.ie/images/blog-new/boogieredw.png"
     },
     "contactPoint": {
       "@type": "ContactPoint",
@@ -44,11 +44,11 @@ export const getWebsiteStructuredData = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Boogie",
-    "url": "https://boogiecc.vercel.app",
+    "url": "https://boog.ie",
     "description": "Professional music production and artist management services",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://boogiecc.vercel.app/blog?search={search_term_string}",
+      "target": "https://boog.ie/blog?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -61,8 +61,8 @@ export const getPersonStructuredData = (artist: any) => {
     "@type": "Person",
     "name": artist.name,
     "description": artist.bio || artist.description,
-    "url": `https://boogiecc.vercel.app/artists/${artist.slug?.current}`,
-    "image": artist.image ? `https://boogiecc.vercel.app${artist.image}` : undefined,
+    "url": `https://boog.ie/artists/${artist.slug?.current}`,
+    "image": artist.image ? `https://boog.ie${artist.image}` : undefined,
     "memberOf": {
       "@type": "Organization",
       "name": "Boogie"
@@ -77,8 +77,8 @@ export const getMusicGroupStructuredData = (artist: any) => {
     "@type": "MusicGroup",
     "name": artist.name,
     "description": artist.bio || artist.description,
-    "url": `https://boogiecc.vercel.app/artists/${artist.slug?.current}`,
-    "image": artist.image ? `https://boogiecc.vercel.app${artist.image}` : undefined,
+    "url": `https://boog.ie/artists/${artist.slug?.current}`,
+    "image": artist.image ? `https://boog.ie${artist.image}` : undefined,
     "genre": artist.genres || [],
     "foundingDate": artist.foundingDate,
     "recordLabel": {
