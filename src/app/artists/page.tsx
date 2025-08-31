@@ -94,7 +94,7 @@ export default async function ArtistsPage() {
               <div className="mb-6 flex justify-center">
                 <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                   <Image
-                    src="/images/blog-new/wadecorrigan.png"
+                    src="/images/blog-new/wadecorrigan2.png"
                     alt="Wade Corrigan - Blackwood Chapel"
                     fill
                     className="object-cover"
