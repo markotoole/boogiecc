@@ -92,5 +92,10 @@ export const blockContentType = defineType({
         },
       ],
     }),
+    // Add Custom Block support
+    defineArrayMember({
+      type: 'customBlock',
+      title: '🎨 Custom Layout Block'
+    }),
   ],
 })
