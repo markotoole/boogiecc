@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const navLinks = [
   { href: "/artists", label: "Artists" },
-  { href: "/about", label: "About" },
+  { href: "/about-boogie", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
