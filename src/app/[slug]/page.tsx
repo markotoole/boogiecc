@@ -1,30 +1,19 @@
-import { getPageByType, getAllPages, Page } from '@/lib/queries'
-import { urlFor } from '@/lib/sanity'
-import { PortableText } from '@portabletext/react'
-import { portableTextComponents } from '@/lib/portableTextComponents'
-import { PageSection } from '@/components/PageSections'
-import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Metadata } from 'next'
+import { getPageBySlug } from '@/lib/page-queries'
+import { PageSections } from '@/components/PageSections'
+import Image from 'next/image'
+import { urlFor } from '@/sanity/lib/image'
 
-interface Props {
-  params: { slug: string }
+interface PageProps {
+  params: {
+    slug: string
+  }
 }
 
-export async function generateStaticParams() {
-  const pages = await getAllPages()
-  return pages.map((page) => ({
-    slug: page.slug.current,
-  }))
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // Try to get page by slug first, then by page type
-  let page = await getPageByType(params.slug)
+export async function generateMetadata({ params }: PageProps) {
+  const page = await getPageBySlug(params.slug)
   
   if (!page) {
-    // If no page found by type, this will be handled by notFound()
     return {
       title: 'Page Not Found',
     }
@@ -32,124 +21,78 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: page.seo?.metaTitle || page.title,
-    description: page.seo?.metaDescription || `${page.title} - Boogie Media`,
-    openGraph: {
-      title: page.seo?.metaTitle || page.title,
-      description: page.seo?.metaDescription || `${page.title} - Boogie Media`,
-      images: page.seo?.ogImage 
-        ? [urlFor(page.seo.ogImage).width(1200).height(630).url()] 
-        : page.heroSection?.heroImage 
-          ? [urlFor(page.heroSection.heroImage).width(1200).height(630).url()]
-          : [],
-    },
+    description: page.seo?.metaDescription || page.heroSection?.subheadline,
+    openGraph: page.seo?.ogImage ? {
+      images: [urlFor(page.seo.ogImage).url()],
+    } : undefined,
   }
 }
 
-export const revalidate = 60 // Revalidate every 60 seconds
+export default async function DynamicPage({ params }: PageProps) {
+  const page = await getPageBySlug(params.slug)
 
-export default async function DynamicPage({ params }: Props) {
-  // Try to get page by page type (e.g., 'about' for /about)
-  const page = await getPageByType(params.slug)
-
-  if (!page) {
+  if (!page || !page.isPublished) {
     notFound()
   }
 
   return (
-    <div className="min-h-screen">
+    <>
       {/* Hero Section */}
       {page.heroSection && (
-        <section className="relative">
-          {page.heroSection.heroImage && (
-            <div className="relative h-96 lg:h-[500px]">
-              <Image
-                src={urlFor(page.heroSection.heroImage).width(1200).height(500).url()}
-                alt={page.heroSection.headline || page.title}
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40" />
-            </div>
-          )}
-          
-          <div className={`${
-            page.heroSection.heroImage ? 'absolute inset-0' : 'py-20'
-          } flex items-center justify-center`}>
-            <div className="container mx-auto px-4 text-center">
-              <h1 className={`text-4xl lg:text-6xl font-bold mb-6 ${
-                page.heroSection.heroImage ? 'text-white' : 'text-gray-900 dark:text-white'
-              }`}>
-                {page.heroSection.headline || page.title}
-              </h1>
-              
-              {page.heroSection.subheadline && (
-                <p className={`text-xl lg:text-2xl mb-8 max-w-3xl mx-auto ${
-                  page.heroSection.heroImage ? 'text-gray-200' : 'text-gray-600 dark:text-gray-400'
-                }`}>
-                  {page.heroSection.subheadline}
-                </p>
-              )}
-              
-              {page.heroSection.ctaButton && page.heroSection.ctaButton.text && (
-                <Link
-                  href={page.heroSection.ctaButton.link || '#'}
-                  className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  {page.heroSection.ctaButton.text}
-                </Link>
+        <section className="px-4 py-20">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid gap-12 md:grid-cols-2">
+              <div className="flex flex-col justify-center">
+                <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl mb-6">
+                  {page.heroSection.headline || page.title}
+                </h1>
+                {page.heroSection.subheadline && (
+                  <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                    {page.heroSection.subheadline}
+                  </p>
+                )}
+                {page.heroSection.ctaButton?.text && page.heroSection.ctaButton?.link && (
+                  <div>
+                    <a
+                      href={page.heroSection.ctaButton.link}
+                      className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700"
+                    >
+                      {page.heroSection.ctaButton.text}
+                    </a>
+                  </div>
+                )}
+              </div>
+              {page.heroSection.heroImage && (
+                <div className="relative h-[400px] overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <Image
+                    src={urlFor(page.heroSection.heroImage).url()}
+                    alt={page.heroSection.headline || page.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               )}
             </div>
           </div>
         </section>
       )}
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Basic content (if no hero section) */}
-        {!page.heroSection && (
-          <div className="text-center mb-12">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">{page.title}</h1>
-          </div>
-        )}
+      {/* Page Sections */}
+      {page.sections && page.sections.length > 0 && (
+        <PageSections sections={page.sections} />
+      )}
 
-        {/* Render main content */}
-        {page.content && (
-          <div className="max-w-4xl mx-auto mb-12">
-            <div className="prose prose-lg max-w-none dark:prose-invert">
-              <PortableText 
-                value={page.content}
-                components={portableTextComponents}
-              />
+      {/* Main Content */}
+      {page.content && (
+        <section className="px-4 py-20">
+          <div className="container mx-auto max-w-4xl">
+            <div className="prose prose-lg dark:prose-invert mx-auto">
+              {/* You'll need to render the blockContent here */}
+              {/* This requires a PortableText component */}
             </div>
           </div>
-        )}
-
-        {/* Render dynamic sections */}
-        {page.sections && page.sections.length > 0 && (
-          <div className="space-y-12">
-            {page.sections.map((section, index) => (
-              <PageSection key={section._key || index} section={section} />
-            ))}
-          </div>
-        )}
-
-        {/* Fallback content for empty pages */}
-        {!page.content && (!page.sections || page.sections.length === 0) && (
-          <div className="text-center py-12">
-            <p className="text-lg text-gray-600 dark:text-gray-400">
-              This page is ready for content! Visit the{' '}
-              <Link 
-                href="/studio"
-                className="text-blue-600 hover:underline"
-              >
-                Sanity Studio
-              </Link>{' '}
-              to add content and sections.
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
+        </section>
+      )}
+    </>
   )
 }
