@@ -18,10 +18,10 @@ export default async function Home() {
                 Welcome to <span className="text-blue-600 dark:text-blue-500">Boogie!</span>
               </h1>
               <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
-                Where digital innovation meets creative expression. We're a multifaceted media company pushing boundaries across app development, music production, and digital publishing. Our passionate team of developers, musicians, writers, and designers collaborates to create meaningful digital experiences that resonate with audiences worldwide.
+                Where digital innovation meets creative expression. We're a multifaceted media company pushing boundaries across music production and digital publishing. Our passionate team of musicians, writers, and designers collaborates to create meaningful digital experiences that resonate with audiences worldwide.
               </p>
               <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
-                At boog.ie, we believe in the power of technology to amplify creative voices and build communities around shared passions. Whether you're looking for cutting-edge apps, fresh musical talents, or thought-provoking content, you've found your digital home. Explore our ecosystem of innovation and discover what happens when technical expertise meets artistic vision.
+                At boog.ie, we believe in the power of technology to amplify creative voices. Whether you're looking for fresh musical talents or thought-provoking content, you've found your digital home. Explore our ecosystem of innovation and discover what happens when technical expertise meets artistic vision.
               </p>
             </div>
             <div className="flex items-center justify-center">
@@ -139,57 +139,35 @@ export default async function Home() {
               Explore our range of offerings that help creative minds bring their vision to life.
             </p>
           </div>
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Service 1 */}
-            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">App Development</h3>
-              <p className="mt-2 text-gray-500 dark:text-gray-400">
-                Cutting-edge mobile and web applications built with the latest technologies and user-centric design.
-              </p>
-            </div>
-            {/* Service 2 */}
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
+            {/* Service 1 - Music Production */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
               <h3 className="text-xl font-bold">Music Production</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
                 Professional audio engineering, mixing, mastering, and artist development services for emerging talent.
               </p>
             </div>
-            {/* Service 3 */}
+            {/* Service 2 - Digital Publishing */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
               <h3 className="text-xl font-bold">Digital Publishing</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
                 End-to-end publishing solutions for digital content creators, from conception to distribution.
               </p>
             </div>
-            {/* Service 4 */}
+            {/* Service 3 - Content Creation */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
               <h3 className="text-xl font-bold">Content Creation</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
                 High-quality written and visual content that engages audiences and tells compelling stories.
               </p>
             </div>
-            {/* Service 5 */}
+            {/* Service 4 - Creative Direction */}
             <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
               <h3 className="text-xl font-bold">Creative Direction</h3>
               <p className="mt-2 text-gray-500 dark:text-gray-400">
                 Strategic guidance for artistic projects, helping to shape vision, identity, and execution.
               </p>
             </div>
-            {/* Service 6 */}
-            <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-xl font-bold">Community Building</h3>
-              <p className="mt-2 text-gray-500 dark:text-gray-400">
-                Creating and nurturing digital spaces where like-minded creators can connect and collaborate.
-              </p>
-            </div>
-          </div>
-          <div className="mt-12 flex justify-center">
-            <Link
-              href="/services"
-              className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-900 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-            >
-              Learn More About Our Services
-            </Link>
           </div>
         </div>
       </section>
