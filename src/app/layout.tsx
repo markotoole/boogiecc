@@ -35,61 +35,69 @@ function Header() {
   };
 
   return (
-    <header className="bg-black text-white p-4 relative z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="flex items-center" onClick={closeMenu}>
-          <div className="relative h-10 w-32">
-            <Image
-              src="/images/blog-new/boogie_logo_ts.png"
-              alt="Boogie Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </Link>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="hover:text-gray-300 transition-colors duration-200"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        
-        {/* Hamburger Button */}
-        <button 
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-          className="md:hidden p-2 hover:bg-gray-800 rounded transition-colors duration-200 z-50 relative"
-        >
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-full left-0 right-0 bg-black z-40">
-          <nav className="py-8">
-            {navLinks.map((link, index) => (
+    <>
+      <header className="bg-black text-white p-4 relative z-50">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link href="/" className="flex items-center" onClick={closeMenu}>
+            <div className="relative h-10 w-32">
+              <Image
+                src="/images/blog-new/boogie_logo_ts.png"
+                alt="Boogie Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </Link>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-6">
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={closeMenu}
-                className="block px-6 py-4 text-lg hover:bg-gray-800 hover:text-gray-300 transition-all duration-200 border-b border-gray-800"
+                className="hover:text-gray-300 transition-colors duration-200"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
+          
+          {/* Hamburger Button */}
+          <button 
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            className="md:hidden p-2 hover:bg-gray-800 rounded transition-colors duration-200 z-50 relative"
+          >
+            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Menu - Outside header to avoid positioning issues */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-black z-40 pt-20">
+          <nav className="container mx-auto">
+            {navLinks.map((link, index) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={closeMenu}
+                className="block px-6 py-4 text-lg text-white hover:bg-gray-800 hover:text-gray-300 transition-all duration-200 border-b border-gray-800"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          
+          {/* Close overlay when clicking outside menu items */}
+          <div 
+            className="absolute inset-0 -z-10"
+            onClick={closeMenu}
+          />
         </div>
       )}
-    </header>
+    </>
   );
 }
 
