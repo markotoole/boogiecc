@@ -112,11 +112,11 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 )}
               </div>
             )}
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {items.map((item, index) => (
                 <div key={index} className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
                   {item.icon && (
-                    <div className="text-3xl mb-4 text-center">{item.icon}</div>
+                    <div className="text-4xl mb-6 text-center">{item.icon}</div>
                   )}
                   {item.image && (
                     <div className="mb-6 flex justify-center">
@@ -131,15 +131,22 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                     </div>
                   )}
                   {item.title && (
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                    <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">{item.title}</h3>
                   )}
                   {item.content && (
-                    <div className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                      <PortableText value={item.content} />
+                    <div className="text-gray-500 dark:text-gray-400 text-center leading-relaxed">
+                      <PortableText 
+                        value={item.content}
+                        components={{
+                          block: {
+                            normal: ({children}) => <p className="mb-2 last:mb-0">{children}</p>
+                          }
+                        }}
+                      />
                     </div>
                   )}
                   {item.link && (
-                    <div className="mt-4">
+                    <div className="mt-6 text-center">
                       <a
                         href={item.link.url}
                         className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
@@ -172,7 +179,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 )}
               </div>
             )}
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="mt-16 grid gap-12 md:grid-cols-2">
               {items.slice(0, 2).map((item, index) => (
                 <div key={index} className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
                   {item.image && (
@@ -188,7 +195,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                     </div>
                   )}
                   {item.title && (
-                    <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                    <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
                   )}
                   {item.content && (
                     <div className="text-gray-500 dark:text-gray-400 mb-4">
@@ -196,7 +203,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                     </div>
                   )}
                   {item.link && (
-                    <div className="mt-auto">
+                    <div className="mt-6">
                       <a
                         href={item.link.url}
                         className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
@@ -229,7 +236,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 )}
               </div>
             )}
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-16 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
               {items.slice(0, 3).map((item, index) => (
                 <div key={index} className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
                   {item.image && (
@@ -245,7 +252,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                     </div>
                   )}
                   {item.icon && (
-                    <div className="text-2xl mb-4 text-center">{item.icon}</div>
+                    <div className="text-3xl mb-4 text-center">{item.icon}</div>
                   )}
                   {item.title && (
                     <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
@@ -380,9 +387,9 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 )}
               </div>
             )}
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {items.map((item, index) => (
-                <div key={index} className={`${alignmentClasses}`}>
+                <div key={index} className={`text-center`}>
                   <div className="text-5xl font-bold text-blue-600 mb-2">
                     {item.title}
                   </div>
