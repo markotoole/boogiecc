@@ -6,8 +6,8 @@ export default async function sitemap() {
   const pages = await getAllPages()
   const artists = await getAllArtists()
 
-  // Base URL
-  const baseUrl = 'https://boogiecc.vercel.app'
+  // Base URL - Updated to new domain
+  const baseUrl = 'https://boog.ie'
 
   // Static routes
   const staticRoutes = [
