@@ -271,7 +271,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 <h2 className="text-4xl font-bold mb-6">{title}</h2>
               )}
               {subtitle && (
-                <p className="text-xl mb-8 opacity-90">{subtitle}</p>
+                <p className="text-xl mb-8 opacity-80">{subtitle}</p>
               )}
               {content && (
                 <div className="prose prose-lg max-w-none mb-8">
@@ -282,7 +282,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 <div>
                   <a
                     href={ctaButton.url}
-                    className={`inline-block px-8 py-4 rounded-lg text-lg font-medium transition-colors ${getButtonClasses(ctaButton.style)}`}
+                    className={`inline-block px-8 py-4 text-lg rounded-md font-medium transition-colors ${getButtonClasses(ctaButton.style)}`}
                   >
                     {ctaButton.text}
                   </a>
@@ -297,9 +297,9 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
       return (
         <div className={spacingClasses}>
           <div className="container mx-auto px-4">
-            <div className={`${colorClasses} rounded-lg p-12 border-l-8 border-blue-500`}>
+            <div className={`${colorClasses} rounded-lg p-12 border-l-8 border-blue-600 ${alignmentClasses}`}>
               {content && (
-                <blockquote className="text-2xl font-medium italic mb-6">
+                <blockquote className="text-2xl italic font-medium mb-6">
                   <PortableText value={content} />
                 </blockquote>
               )}
@@ -307,7 +307,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 <cite className="text-lg font-semibold not-italic">— {title}</cite>
               )}
               {subtitle && (
-                <div className="text-md opacity-75 mt-1">{subtitle}</div>
+                <p className="text-sm opacity-70 mt-1">{subtitle}</p>
               )}
             </div>
           </div>
@@ -316,7 +316,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
 
     case 'imageTextOverlay':
       return (
-        <div className={`${spacingClasses} relative`}>
+        <div className={`relative ${spacingClasses} overflow-hidden`}>
           {backgroundImage && (
             <div className="absolute inset-0 z-0">
               <Image
@@ -328,10 +328,10 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
               <div className="absolute inset-0 bg-black/50" />
             </div>
           )}
-          <div className="relative z-10 container mx-auto px-4">
-            <div className={`text-white ${alignmentClasses} max-w-2xl ${alignment === 'center' ? 'mx-auto' : ''}`}>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className={`text-white ${alignmentClasses} max-w-4xl ${alignment === 'center' ? 'mx-auto' : ''}`}>
               {title && (
-                <h2 className="text-4xl font-bold mb-6">{title}</h2>
+                <h2 className="text-5xl font-bold mb-6">{title}</h2>
               )}
               {subtitle && (
                 <p className="text-xl mb-8">{subtitle}</p>
@@ -345,7 +345,7 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                 <div>
                   <a
                     href={ctaButton.url}
-                    className={`inline-block px-8 py-4 rounded-lg text-lg font-medium transition-colors ${getButtonClasses(ctaButton.style)}`}
+                    className={`inline-block px-8 py-4 text-lg rounded-md font-medium transition-colors ${getButtonClasses(ctaButton.style)}`}
                   >
                     {ctaButton.text}
                   </a>
@@ -363,14 +363,14 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
             {title && (
               <h2 className={`text-3xl font-bold mb-12 ${alignmentClasses}`}>{title}</h2>
             )}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {items.map((item, index) => (
                 <div key={index} className={`${alignmentClasses}`}>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">
+                  <div className="text-5xl font-bold text-blue-600 mb-2">
                     {item.title}
                   </div>
                   {item.content && (
-                    <div className="text-sm text-gray-600">
+                    <div className="text-lg opacity-80">
                       <PortableText value={item.content} />
                     </div>
                   )}
@@ -383,10 +383,10 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
 
     default:
       return (
-        <div className={spacingClasses}>
+        <div className="py-4">
           <div className="container mx-auto px-4">
-            <div className="bg-gray-100 p-4 rounded-lg">
-              <p className="text-gray-600">Unknown block type: {blockType}</p>
+            <div className="bg-gray-100 border border-dashed border-gray-300 rounded p-4 text-center text-gray-600">
+              Unknown block type: {blockType}
             </div>
           </div>
         </div>
