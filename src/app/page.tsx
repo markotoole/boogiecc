@@ -93,7 +93,7 @@ export default async function Home() {
                 <div className="mb-6 flex justify-center">
                   <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
                     <Image
-                      src="/images/noesis.png"
+                      src="/images/blog-new/noesis.png"
                       alt="Noesis"
                       fill
                       className="object-cover"
