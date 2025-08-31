@@ -81,4 +81,30 @@ export default async function Home() {
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                   >
                     View Full Profile
-                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24
+                    {/* --- Corrected SVG icon --- */}
+                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Noesis Profile - Fallback */}
+              <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950">
+                <div className="mb-6 flex justify-center">
+                  <div className="relative h-[250px] w-full overflow-hidden rounded-lg">
+                    <Image
+                      src="/images/noesis.jpg"
+                      alt="Noesis"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold">Noesis</h3>
+                <p className="mt-4 text-gray-500 dark:text-gray-400">
+                  Noesis harnesses the transformative power of sound to guide listeners through the depths of human experience and beyond. Her shape-shifting compositions blend haunting vocals with intricate electronic textures, creating a sonic alchemy that's both introspective and expansive.
+                </p>
+                <div className="mt-6">
+                  <Link
+                    href="
