@@ -41,7 +41,7 @@ function Header() {
           <Link href="/" className="flex items-center" onClick={closeMenu}>
             <div className="relative h-10 w-32">
               <Image
-                src="/images/blog-new/boogie_logo_ts.png"
+                src="/images/blog-new/boogiered.png"
                 alt="Boogie Logo"
                 fill
                 className="object-contain"
