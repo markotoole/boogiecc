@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import StructuredData, { getOrganizationStructuredData, getWebsiteStructuredData } from "@/components/StructuredData";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -116,13 +118,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Get Google Analytics ID from environment variable
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="en">
       <head>
         <title>Boogie - Music Production & Artist Management</title>
         <meta name="description" content="Professional music production and artist management services" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Google Site Verification - Add your verification code here once you get it from Search Console */}
+        {/* <meta name="google-site-verification" content="your-verification-code" /> */}
+        
+        {/* Structured Data */}
+        <StructuredData data={getOrganizationStructuredData()} />
+        <StructuredData data={getWebsiteStructuredData()} />
       </head>
       <body className={inter.className}>
+        {/* Google Analytics - Only load if GA_MEASUREMENT_ID is set */}
+        {GA_MEASUREMENT_ID && <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />}
+        
         <Header />
         <main>{children}</main>
         <Footer />
