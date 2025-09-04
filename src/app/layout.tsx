@@ -107,8 +107,18 @@ function Header() {
 function Footer() {
   return (
     <footer className="bg-black text-white p-4 mt-8">
-      <div className="container mx-auto text-center">
-        <p>© 2025 Boogie. All rights reserved.</p>
+      <div className="container mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p className="text-center md:text-left">© 2025 Boogie. All rights reserved.</p>
+          <div className="flex space-x-6 text-sm">
+            <Link 
+              href="/privacy-policy" 
+              className="hover:text-gray-300 transition-colors duration-200"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
