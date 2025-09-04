@@ -8,6 +8,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import StructuredData, { getOrganizationStructuredData, getWebsiteStructuredData } from "@/components/StructuredData";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -142,6 +143,9 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        
+        {/* Cookie Consent Banner */}
+        <CookieConsent />
       </body>
     </html>
   );
