@@ -8,6 +8,8 @@ interface CustomBlockProps {
     title?: string
     subtitle?: string
     content?: any[]
+    htmlContent?: string
+    htmlDescription?: string
     colorScheme?: string
     alignment?: string
     items?: Array<{
@@ -33,6 +35,8 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
     title,
     subtitle,
     content,
+    htmlContent,
+    htmlDescription,
     colorScheme = 'default',
     alignment = 'left',
     items = [],
@@ -70,6 +74,43 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
 
   // Render different block types using your site's exact styling
   switch (blockType) {
+    case 'customHtml':
+      return (
+        <section className={`px-4 ${spacingClasses}`}>
+          <div className="container mx-auto max-w-6xl">
+            {/* Show title/description for editors */}
+            {(title || htmlDescription) && (
+              <div className="mb-6">
+                {title && (
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{title}</h3>
+                )}
+                {htmlDescription && (
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    {htmlDescription}
+                  </p>
+                )}
+              </div>
+            )}
+            
+            {/* Render HTML content safely */}
+            {htmlContent && (
+              <div 
+                className="custom-html-content"
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+              />
+            )}
+            
+            {!htmlContent && (
+              <div className="bg-gray-100 dark:bg-gray-800 border border-dashed border-gray-300 dark:border-gray-600 rounded p-8 text-center">
+                <p className="text-gray-600 dark:text-gray-400">
+                  No HTML content provided. Add HTML content in the Sanity editor.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+
     case 'callout':
       return (
         <section className={`px-4 ${spacingClasses}`}>
