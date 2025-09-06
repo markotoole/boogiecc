@@ -92,10 +92,10 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
               </div>
             )}
             
-            {/* Render HTML content safely */}
+            {/* Render HTML content safely with improved iframe styling */}
             {htmlContent && (
               <div 
-                className="custom-html-content"
+                className="custom-html-content [&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:rounded-lg [&_iframe]:shadow-sm [&_iframe[src*='spotify']]:h-[352px] [&_iframe[src*='soundcloud']]:h-[166px] [&_iframe[src*='youtube']]:aspect-video [&_iframe[src*='bandcamp']]:h-[470px]"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
             )}
