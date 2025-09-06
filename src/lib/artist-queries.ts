@@ -52,6 +52,44 @@ export const artistBySlugQuery = `
     },
     shortBio,
     fullBio,
+    customContent[] {
+      _type,
+      _key,
+      blockType,
+      title,
+      subtitle,
+      content,
+      htmlContent,
+      htmlDescription,
+      colorScheme,
+      alignment,
+      items[] {
+        title,
+        content,
+        icon,
+        image {
+          asset->,
+          alt
+        },
+        link {
+          text,
+          url
+        }
+      },
+      backgroundImage {
+        asset->,
+        alt
+      },
+      ctaButton {
+        text,
+        url,
+        style
+      },
+      spacing,
+      asset->,
+      alt,
+      caption
+    },
     socialLinks,
     musicSamples[] {
       title,
