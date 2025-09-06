@@ -80,6 +80,16 @@ export const artistType = defineType({
       description: 'Complete artist biography with rich text formatting'
     }),
     defineField({
+      name: 'customContent',
+      title: 'Additional Content & Embeds',
+      type: 'array',
+      description: 'Add custom blocks like Spotify embeds, galleries, etc.',
+      of: [
+        { type: 'customBlock' },
+        { type: 'image', options: { hotspot: true } }
+      ]
+    }),
+    defineField({
       name: 'socialLinks',
       title: 'Social Links',
       type: 'object',
