@@ -46,14 +46,6 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
     notFound()
   }
   
-  // Debug logging - will show in Vercel logs
-  console.log('Artist data for', params.slug, ':', {
-    name: artist.name,
-    hasCustomContent: !!artist.customContent,
-    customContentLength: artist.customContent?.length || 0,
-    customContent: artist.customContent
-  })
-  
   const displayName = artist.stageName || artist.name
   
   return (
@@ -125,27 +117,10 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
                 </div>
               )}
 
-              {/* Debug info - will be visible on page temporarily */}
-              {process.env.NODE_ENV === 'development' && (
-                <div className="mb-8 p-4 bg-yellow-100 border border-yellow-400 rounded">
-                  <h3 className="font-bold">Debug Info:</h3>
-                  <p>Custom Content exists: {artist.customContent ? 'Yes' : 'No'}</p>
-                  <p>Custom Content length: {artist.customContent?.length || 0}</p>
-                  {artist.customContent && (
-                    <pre className="text-xs mt-2 bg-gray-100 p-2 rounded overflow-x-auto">
-                      {JSON.stringify(artist.customContent, null, 2)}
-                    </pre>
-                  )}
-                </div>
-              )}
-
               {/* Custom Content & Embeds */}
               {artist.customContent && artist.customContent.length > 0 && (
                 <div className="mb-12">
-                  <h3 className="text-xl font-bold mb-4">Additional Content</h3>
                   {artist.customContent.map((block: any, index: number) => {
-                    console.log('Rendering block:', index, block._type, block)
-                    
                     if (block._type === 'customBlock') {
                       return <CustomBlockRenderer key={index} value={block} />
                     }
@@ -170,20 +145,8 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
                       )
                     }
                     
-                    return (
-                      <div key={index} className="my-4 p-4 bg-gray-100 rounded">
-                        <p>Unknown block type: {block._type}</p>
-                        <pre className="text-xs mt-2">{JSON.stringify(block, null, 2)}</pre>
-                      </div>
-                    )
+                    return null
                   })}
-                </div>
-              )}
-
-              {/* Show message if no custom content */}
-              {(!artist.customContent || artist.customContent.length === 0) && (
-                <div className="mb-12 p-4 bg-blue-50 border border-blue-200 rounded">
-                  <p className="text-blue-800">No additional content found. Check Sanity Studio to add custom blocks.</p>
                 </div>
               )}
 
