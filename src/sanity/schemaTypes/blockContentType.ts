@@ -72,5 +72,9 @@ export const blockContentType = defineType({
         }
       ]
     }),
+    // Add custom blocks to rich text editor
+    defineArrayMember({
+      type: 'customBlock',
+    }),
   ],
 })
