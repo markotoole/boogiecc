@@ -19,6 +19,7 @@ export default defineType({
           { title: 'Quote Section', value: 'quoteSection' },
           { title: 'Image with Text Overlay', value: 'imageTextOverlay' },
           { title: 'Stats Section', value: 'statsSection' },
+          { title: 'Custom HTML', value: 'customHtml' },
         ],
         layout: 'dropdown'
       },
@@ -38,7 +39,23 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }]
+      of: [{ type: 'block' }],
+      hidden: ({ parent }) => parent?.blockType === 'customHtml'
+    },
+    {
+      name: 'htmlContent',
+      title: 'HTML Content',
+      type: 'text',
+      description: 'Enter your custom HTML code here. Use with caution and ensure the HTML is safe.',
+      rows: 10,
+      hidden: ({ parent }) => parent?.blockType !== 'customHtml'
+    },
+    {
+      name: 'htmlDescription',
+      title: 'Description (for editors)',
+      type: 'string',
+      description: 'Brief description of what this HTML block contains (for content editors)',
+      hidden: ({ parent }) => parent?.blockType !== 'customHtml'
     },
     {
       name: 'colorScheme',
@@ -56,7 +73,8 @@ export default defineType({
         ],
         layout: 'dropdown'
       },
-      initialValue: 'default'
+      initialValue: 'default',
+      hidden: ({ parent }) => parent?.blockType === 'customHtml'
     },
     {
       name: 'alignment',
@@ -70,7 +88,8 @@ export default defineType({
         ],
         layout: 'radio'
       },
-      initialValue: 'left'
+      initialValue: 'left',
+      hidden: ({ parent }) => parent?.blockType === 'customHtml'
     },
     {
       name: 'items',
@@ -164,7 +183,8 @@ export default defineType({
           },
           initialValue: 'primary'
         }
-      ]
+      ],
+      hidden: ({ parent }) => parent?.blockType === 'customHtml'
     },
     {
       name: 'spacing',
@@ -184,10 +204,19 @@ export default defineType({
     select: {
       title: 'title',
       blockType: 'blockType',
-      colorScheme: 'colorScheme'
+      colorScheme: 'colorScheme',
+      htmlDescription: 'htmlDescription'
     },
     prepare(selection) {
-      const { title, blockType, colorScheme } = selection
+      const { title, blockType, colorScheme, htmlDescription } = selection
+      
+      if (blockType === 'customHtml') {
+        return {
+          title: title || htmlDescription || 'Custom HTML Block',
+          subtitle: `HTML Block • Custom code`
+        }
+      }
+      
       return {
         title: title || `Custom Block`,
         subtitle: `${blockType} • ${colorScheme} theme`
