@@ -1,6 +1,7 @@
 import { getArtistBySlug, getAllArtists } from '../../../lib/artist-queries'
 import { urlFor } from '../../../sanity/lib/image'
 import { PortableText } from '@portabletext/react'
+import CustomBlockRenderer from '../../../components/CustomBlockRenderer'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -113,6 +114,39 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
                   <div className="prose prose-lg max-w-none">
                     <PortableText value={artist.fullBio} />
                   </div>
+                </div>
+              )}
+
+              {/* Custom Content & Embeds */}
+              {artist.customContent && artist.customContent.length > 0 && (
+                <div className="mb-12">
+                  {artist.customContent.map((block: any, index: number) => {
+                    if (block._type === 'customBlock') {
+                      return <CustomBlockRenderer key={index} value={block} />
+                    }
+                    
+                    if (block._type === 'image') {
+                      return (
+                        <div key={index} className="my-8">
+                          <div className="relative aspect-video rounded-lg overflow-hidden">
+                            <Image
+                              src={urlFor(block).url()}
+                              alt={block.alt || ''}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          {block.caption && (
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center italic">
+                              {block.caption}
+                            </p>
+                          )}
+                        </div>
+                      )
+                    }
+                    
+                    return null
+                  })}
                 </div>
               )}
 
