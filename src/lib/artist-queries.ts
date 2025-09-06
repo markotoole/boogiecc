@@ -35,6 +35,16 @@ export const featuredArtistsQuery = `
   }
 `
 
+// Simplified query for debugging
+export const artistBySlugQueryDebug = `
+  *[_type == "artist" && slug.current == $slug && isActive == true][0] {
+    _id,
+    name,
+    slug,
+    customContent
+  }
+`
+
 export const artistBySlugQuery = `
   *[_type == "artist" && slug.current == $slug && isActive == true][0] {
     _id,
@@ -118,5 +128,14 @@ export async function getFeaturedArtists() {
 }
 
 export async function getArtistBySlug(slug: string) {
-  return await client.fetch(artistBySlugQuery, { slug })
+  const result = await client.fetch(artistBySlugQuery, { slug })
+  console.log('Full artist query result for', slug, ':', result)
+  return result
+}
+
+// Debug function
+export async function getArtistDebug(slug: string) {
+  const result = await client.fetch(artistBySlugQueryDebug, { slug })
+  console.log('Debug artist query result for', slug, ':', result)
+  return result
 }
