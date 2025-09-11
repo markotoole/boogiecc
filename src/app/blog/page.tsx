@@ -14,6 +14,9 @@ export const revalidate = 60; // Revalidate every 60 seconds
 export default async function BlogPage() {
   const posts = await getAllPosts();
 
+  // Filter out posts without valid slugs before rendering
+  const validPosts = posts.filter(post => post && post.slug && post.slug.current);
+
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto">
@@ -23,7 +26,7 @@ export default async function BlogPage() {
           events, media productions, and the ever-evolving worlds of digital art and publishing.
         </p>
 
-        {posts.length === 0 ? (
+        {validPosts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-lg text-gray-600 dark:text-gray-400">
               No blog posts found. Check back soon for new content!
@@ -37,36 +40,31 @@ export default async function BlogPage() {
           </div>
         ) : (
           <div className="space-y-12">
-            {posts.map((post: Post) => {
-              // Skip posts without valid slugs
-              if (!post.slug?.current) {
-                return null;
-              }
-
-              return (
-                <article key={post._id} className="border-b pb-10 last:border-0 dark:border-gray-800">
-                  <div className="grid md:grid-cols-[250px_1fr] gap-6">
-                    {post.mainImage && (
-                      <div className="relative w-full h-[180px] rounded-lg overflow-hidden">
-                        <Image
-                          src={urlFor(post.mainImage).width(250).height(180).url()}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
-                    <div className="grid gap-4">
-                      <div className="space-y-2">
-                        <h2 className="text-2xl font-bold leading-tight">
-                          <Link 
-                            href={`/blog/${post.slug.current}`} 
-                            className="hover:text-blue-600 dark:hover:text-blue-500"
-                          >
-                            {post.title}
-                          </Link>
-                        </h2>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            {validPosts.map((post: Post) => (
+              <article key={post._id} className="border-b pb-10 last:border-0 dark:border-gray-800">
+                <div className="grid md:grid-cols-[250px_1fr] gap-6">
+                  {post.mainImage && (
+                    <div className="relative w-full h-[180px] rounded-lg overflow-hidden">
+                      <Image
+                        src={urlFor(post.mainImage).width(250).height(180).url()}
+                        alt={post.title || ''}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="grid gap-4">
+                    <div className="space-y-2">
+                      <h2 className="text-2xl font-bold leading-tight">
+                        <Link 
+                          href={`/blog/${post.slug.current}`} 
+                          className="hover:text-blue-600 dark:hover:text-blue-500"
+                        >
+                          {post.title}
+                        </Link>
+                      </h2>
+                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                        {post.publishedAt && (
                           <time dateTime={post.publishedAt}>
                             {new Date(post.publishedAt).toLocaleDateString('en-US', {
                               year: 'numeric',
@@ -74,50 +72,50 @@ export default async function BlogPage() {
                               day: 'numeric',
                             })}
                           </time>
-                          {post.author?.name && (
-                            <>
-                              <span>•</span>
-                              <span>{post.author.name}</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                      {post.excerpt && (
-                        <p className="text-gray-600 dark:text-gray-400">
-                          {post.excerpt}
-                        </p>
-                      )}
-                      {post.categories && post.categories.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          {post.categories
-                            .filter(category => category?.slug?.current) // Filter out categories without valid slugs
-                            .map((category) => (
-                              <span 
-                                key={category.slug.current}
-                                className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-                                style={{
-                                  backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
-                                  color: category.color?.hex || undefined
-                                }}
-                              >
-                                {category.title}
-                              </span>
-                            ))}
-                        </div>
-                      )}
-                      <div>
-                        <Link
-                          href={`/blog/${post.slug.current}`}
-                          className="text-blue-600 hover:underline dark:text-blue-500"
-                        >
-                          Read more →
-                        </Link>
+                        )}
+                        {post.author?.name && (
+                          <>
+                            <span>•</span>
+                            <span>{post.author.name}</span>
+                          </>
+                        )}
                       </div>
                     </div>
+                    {post.excerpt && (
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    {post.categories && post.categories.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {post.categories
+                          .filter(category => category && category.slug && category.slug.current && category.title)
+                          .map((category) => (
+                            <span 
+                              key={category.slug.current}
+                              className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                              style={{
+                                backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
+                                color: category.color?.hex || undefined
+                              }}
+                            >
+                              {category.title}
+                            </span>
+                          ))}
+                      </div>
+                    )}
+                    <div>
+                      <Link
+                        href={`/blog/${post.slug.current}`}
+                        className="text-blue-600 hover:underline dark:text-blue-500"
+                      >
+                        Read more →
+                      </Link>
+                    </div>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            ))}
           </div>
         )}
       </div>
