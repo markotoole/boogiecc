@@ -37,78 +37,87 @@ export default async function BlogPage() {
           </div>
         ) : (
           <div className="space-y-12">
-            {posts.map((post: Post) => (
-              <article key={post._id} className="border-b pb-10 last:border-0 dark:border-gray-800">
-                <div className="grid md:grid-cols-[250px_1fr] gap-6">
-                  {post.mainImage && (
-                    <div className="relative w-full h-[180px] rounded-lg overflow-hidden">
-                      <Image
-                        src={urlFor(post.mainImage).width(250).height(180).url()}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="grid gap-4">
-                    <div className="space-y-2">
-                      <h2 className="text-2xl font-bold leading-tight">
-                        <Link 
-                          href={`/blog/${post.slug.current}`} 
-                          className="hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          {post.title}
-                        </Link>
-                      </h2>
-                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                        <time dateTime={post.publishedAt}>
-                          {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </time>
-                        {post.author && (
-                          <>
-                            <span>•</span>
-                            <span>{post.author.name}</span>
-                          </>
-                        )}
+            {posts.map((post: Post) => {
+              // Skip posts without valid slugs
+              if (!post.slug?.current) {
+                return null;
+              }
+
+              return (
+                <article key={post._id} className="border-b pb-10 last:border-0 dark:border-gray-800">
+                  <div className="grid md:grid-cols-[250px_1fr] gap-6">
+                    {post.mainImage && (
+                      <div className="relative w-full h-[180px] rounded-lg overflow-hidden">
+                        <Image
+                          src={urlFor(post.mainImage).width(250).height(180).url()}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                    </div>
-                    {post.excerpt && (
-                      <p className="text-gray-600 dark:text-gray-400">
-                        {post.excerpt}
-                      </p>
                     )}
-                    {post.categories && post.categories.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {post.categories.map((category) => (
-                          <span 
-                            key={category.slug.current}
-                            className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-                            style={{
-                              backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
-                              color: category.color?.hex || undefined
-                            }}
+                    <div className="grid gap-4">
+                      <div className="space-y-2">
+                        <h2 className="text-2xl font-bold leading-tight">
+                          <Link 
+                            href={`/blog/${post.slug.current}`} 
+                            className="hover:text-blue-600 dark:hover:text-blue-500"
                           >
-                            {category.title}
-                          </span>
-                        ))}
+                            {post.title}
+                          </Link>
+                        </h2>
+                        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                          <time dateTime={post.publishedAt}>
+                            {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </time>
+                          {post.author?.name && (
+                            <>
+                              <span>•</span>
+                              <span>{post.author.name}</span>
+                            </>
+                          )}
+                        </div>
                       </div>
-                    )}
-                    <div>
-                      <Link
-                        href={`/blog/${post.slug.current}`}
-                        className="text-blue-600 hover:underline dark:text-blue-500"
-                      >
-                        Read more →
-                      </Link>
+                      {post.excerpt && (
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {post.excerpt}
+                        </p>
+                      )}
+                      {post.categories && post.categories.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {post.categories
+                            .filter(category => category?.slug?.current) // Filter out categories without valid slugs
+                            .map((category) => (
+                              <span 
+                                key={category.slug.current}
+                                className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                                style={{
+                                  backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
+                                  color: category.color?.hex || undefined
+                                }}
+                              >
+                                {category.title}
+                              </span>
+                            ))}
+                        </div>
+                      )}
+                      <div>
+                        <Link
+                          href={`/blog/${post.slug.current}`}
+                          className="text-blue-600 hover:underline dark:text-blue-500"
+                        >
+                          Read more →
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         )}
       </div>
