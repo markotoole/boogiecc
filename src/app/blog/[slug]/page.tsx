@@ -13,9 +13,12 @@ interface Props {
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug.current,
-  }));
+  // Filter out posts without valid slugs
+  return posts
+    .filter(post => post && post.slug && post.slug.current)
+    .map((post) => ({
+      slug: post.slug.current,
+    }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -73,7 +76,7 @@ export default async function PostPage({ params }: Props) {
                 <div className="relative w-8 h-8 rounded-full overflow-hidden">
                   <Image
                     src={urlFor(post.author.image).width(32).height(32).url()}
-                    alt={post.author.name}
+                    alt={post.author.name || ''}
                     fill
                     className="object-cover"
                   />
@@ -83,30 +86,34 @@ export default async function PostPage({ params }: Props) {
             </div>
           )}
           <span>•</span>
-          <time dateTime={post.publishedAt}>
-            {new Date(post.publishedAt).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
+          {post.publishedAt && (
+            <time dateTime={post.publishedAt}>
+              {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          )}
         </div>
 
         {/* Categories */}
         {post.categories && post.categories.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {post.categories.map((category) => (
-              <span 
-                key={category.slug.current}
-                className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-                style={{
-                  backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
-                  color: category.color?.hex || undefined
-                }}
-              >
-                {category.title}
-              </span>
-            ))}
+            {post.categories
+              .filter(category => category && category.slug && category.slug.current && category.title)
+              .map((category) => (
+                <span 
+                  key={category.slug.current}
+                  className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                  style={{
+                    backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
+                    color: category.color?.hex || undefined
+                  }}
+                >
+                  {category.title}
+                </span>
+              ))}
           </div>
         )}
 
@@ -115,7 +122,7 @@ export default async function PostPage({ params }: Props) {
           <div className="aspect-video relative rounded-lg overflow-hidden mb-8">
             <Image
               src={urlFor(post.mainImage).width(800).height(450).url()}
-              alt={post.title}
+              alt={post.title || ''}
               fill
               className="object-cover"
               priority
@@ -149,7 +156,7 @@ export default async function PostPage({ params }: Props) {
               <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <Image
                   src={urlFor(post.author.image).width(64).height(64).url()}
-                  alt={post.author.name}
+                  alt={post.author.name || ''}
                   fill
                   className="object-cover"
                 />
