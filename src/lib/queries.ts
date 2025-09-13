@@ -78,7 +78,7 @@ export interface Page {
   isPublished: boolean
 }
 
-// GROQ Queries - Updated with better null handling
+// GROQ Queries - Enhanced with better category fetching
 export const postsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   _id,
   title,
@@ -87,7 +87,7 @@ export const postsQuery = `*[_type == "post" && defined(slug.current)] | order(p
   publishedAt,
   mainImage,
   author->{name, slug, image},
-  categories[defined(slug.current)]->{title, slug, color}
+  categories[]->{title, slug, color}
 }`
 
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
@@ -99,7 +99,7 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   mainImage,
   body,
   author->{name, slug, image, bio, email, socialLinks},
-  categories[defined(slug.current)]->{title, slug, color},
+  categories[]->{title, slug, color},
   seo
 }`
 
@@ -185,7 +185,7 @@ export async function getPageByType(pageType: string): Promise<Page | null> {
 }
 
 export async function getPostsByCategory(categorySlug: string): Promise<Post[]> {
-  const query = `*[_type == "post" && defined(slug.current) && $categorySlug in categories[defined(slug.current)]->slug.current] | order(publishedAt desc) {
+  const query = `*[_type == "post" && defined(slug.current) && $categorySlug in categories[]->slug.current] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -193,7 +193,7 @@ export async function getPostsByCategory(categorySlug: string): Promise<Post[]> 
     publishedAt,
     mainImage,
     author->{name, slug, image},
-    categories[defined(slug.current)]->{title, slug, color}
+    categories[]->{title, slug, color}
   }`
   return client.fetch(query, { categorySlug })
 }
@@ -207,7 +207,7 @@ export async function getPostsByAuthor(authorSlug: string): Promise<Post[]> {
     publishedAt,
     mainImage,
     author->{name, slug, image},
-    categories[defined(slug.current)]->{title, slug, color}
+    categories[]->{title, slug, color}
   }`
   return client.fetch(query, { authorSlug })
 }
