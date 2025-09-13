@@ -22,8 +22,8 @@ export default async function BlogPage() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold tracking-tight mb-8">Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-12">
-          Insights, news, and articles from the Boogie team about our artists, 
-          events, media productions, and the ever-evolving worlds of digital art and publishing.
+          Insights, news, articles, fiction, thoughts and experiments from the Boogie team about our artists, 
+          events, media productions, and about the ever-evolving worlds of music, art and publishing.
         </p>
 
         {validPosts.length === 0 ? (
