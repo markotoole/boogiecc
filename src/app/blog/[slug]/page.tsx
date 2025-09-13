@@ -148,6 +148,30 @@ export default async function PostPage({ params }: Props) {
         </div>
       )}
 
+      {/* Tags Section at Bottom */}
+      {post.categories && post.categories.length > 0 && (
+        <div className="mt-12 pt-8 border-t dark:border-gray-800">
+          <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Tags</h3>
+          <div className="flex flex-wrap gap-2">
+            {post.categories
+              .filter(category => category && category.slug && category.slug.current && category.title)
+              .map((category) => (
+                <span 
+                  key={`tag-${category.slug.current}`}
+                  className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                  style={{
+                    backgroundColor: category.color?.hex ? `${category.color.hex}20` : undefined,
+                    color: category.color?.hex || undefined,
+                  }}
+                  title={`View all posts in ${category.title}`}
+                >
+                  #{category.title}
+                </span>
+              ))}
+          </div>
+        </div>
+      )}
+
       {/* Author Bio */}
       {post.author && post.author.bio && (
         <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg">
