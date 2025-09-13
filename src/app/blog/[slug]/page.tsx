@@ -50,21 +50,33 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  // Debug information - will show in console and on page temporarily
-  console.log('Post data:', {
-    title: post.title,
-    hasCategories: !!post.categories,
-    categoriesLength: post.categories?.length || 0,
-    categories: post.categories
-  });
+  const hasCategories = post.categories && post.categories.length > 0;
 
   return (
     <article className="container mx-auto px-4 py-8 max-w-4xl">
-      {/* DEBUG INFO - Remove this once categories are working */}
-      <div className="mb-4 p-4 bg-yellow-100 dark:bg-yellow-900 rounded text-sm">
-        <strong>Debug Info:</strong>
-        <br />Categories found: {post.categories?.length || 0}
-        <br />Categories data: {JSON.stringify(post.categories || [])}
+      {/* DEBUG INFO - Shows category status and instructions */}
+      <div className="mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className="text-sm">
+          <div className="flex items-center gap-2 mb-2">
+            <strong className="text-blue-800 dark:text-blue-200">Category Status:</strong>
+            <span className={hasCategories ? "text-green-600 dark:text-green-400" : "text-orange-600 dark:text-orange-400"}>
+              {hasCategories ? `✅ ${post.categories!.length} categories assigned` : "⚠️ No categories assigned"}
+            </span>
+          </div>
+          {!hasCategories && (
+            <div className="text-blue-700 dark:text-blue-300 text-xs">
+              <strong>To add categories:</strong>
+              <br />1. Go to Sanity Studio → Categories → Create categories (Music, Art, News, etc.)
+              <br />2. Edit this blog post → Assign categories → Publish
+              <br />3. Categories will then appear as tags above and below the post
+            </div>
+          )}
+          {hasCategories && (
+            <div className="text-xs text-green-700 dark:text-green-300">
+              Categories: {post.categories!.map(cat => cat.title).join(", ")}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Breadcrumbs */}
@@ -112,10 +124,10 @@ export default async function PostPage({ params }: Props) {
           )}
         </div>
 
-        {/* Categories */}
-        {post.categories && post.categories.length > 0 && (
+        {/* Categories at Top */}
+        {hasCategories && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {post.categories
+            {post.categories!
               .filter(category => category && category.slug && category.slug.current && category.title)
               .map((category) => (
                 <span 
@@ -164,11 +176,11 @@ export default async function PostPage({ params }: Props) {
       )}
 
       {/* Tags Section at Bottom */}
-      {post.categories && post.categories.length > 0 && (
+      {hasCategories && (
         <div className="mt-12 pt-8 border-t dark:border-gray-800">
           <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Tags</h3>
           <div className="flex flex-wrap gap-2">
-            {post.categories
+            {post.categories!
               .filter(category => category && category.slug && category.slug.current && category.title)
               .map((category) => (
                 <span 
