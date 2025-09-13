@@ -50,8 +50,23 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
+  // Debug information - will show in console and on page temporarily
+  console.log('Post data:', {
+    title: post.title,
+    hasCategories: !!post.categories,
+    categoriesLength: post.categories?.length || 0,
+    categories: post.categories
+  });
+
   return (
     <article className="container mx-auto px-4 py-8 max-w-4xl">
+      {/* DEBUG INFO - Remove this once categories are working */}
+      <div className="mb-4 p-4 bg-yellow-100 dark:bg-yellow-900 rounded text-sm">
+        <strong>Debug Info:</strong>
+        <br />Categories found: {post.categories?.length || 0}
+        <br />Categories data: {JSON.stringify(post.categories || [])}
+      </div>
+
       {/* Breadcrumbs */}
       <nav className="mb-8 text-sm">
         <Link href="/" className="text-blue-600 hover:underline">
