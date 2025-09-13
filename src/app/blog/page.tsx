@@ -17,29 +17,9 @@ export default async function BlogPage() {
   // Filter out posts without valid slugs before rendering
   const validPosts = posts.filter(post => post && post.slug && post.slug.current);
 
-  // Debug: log all posts data
-  console.log('All posts data:', validPosts.map(post => ({
-    title: post.title,
-    hasCategories: !!post.categories,
-    categoriesLength: post.categories?.length || 0,
-    categories: post.categories?.map(cat => ({ title: cat?.title, slug: cat?.slug?.current }))
-  })));
-
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* DEBUG INFO for blog listing */}
-        <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-          <div className="text-sm">
-            <strong className="text-blue-800 dark:text-blue-200">Blog Listing Debug:</strong>
-            <div className="text-xs text-blue-700 dark:text-blue-300 mt-2">
-              Total posts: {validPosts.length}
-              <br />Posts with categories: {validPosts.filter(post => post.categories && post.categories.length > 0).length}
-              <br />Check console for detailed post data
-            </div>
-          </div>
-        </div>
-
         <h1 className="text-4xl font-bold tracking-tight mb-8">Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-12">
           Insights, news, articles, fiction, thoughts and experiments from the Boogie team about our artists, 
@@ -106,15 +86,6 @@ export default async function BlogPage() {
                         {post.excerpt}
                       </p>
                     )}
-                    
-                    {/* Debug info per post */}
-                    <div className="text-xs bg-yellow-50 dark:bg-yellow-900/20 p-2 rounded">
-                      Categories for "{post.title}": {post.categories?.length || 0}
-                      {post.categories && post.categories.length > 0 && (
-                        <div>Data: {JSON.stringify(post.categories.map(cat => ({ title: cat?.title, slug: cat?.slug?.current })))}</div>
-                      )}
-                    </div>
-
                     {post.categories && post.categories.length > 0 && (
                       <div className="flex flex-wrap gap-2">
                         {post.categories
