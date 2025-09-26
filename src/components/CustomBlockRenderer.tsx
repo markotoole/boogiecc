@@ -45,6 +45,10 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
     spacing = 'medium'
   } = value
 
+  // Debug logging
+  console.log('CustomBlockRenderer - blockType:', blockType)
+  console.log('CustomBlockRenderer - htmlContent:', htmlContent)
+
   // Spacing classes matching your site
   const getSpacingClasses = (spacing: string) => {
     switch (spacing) {
@@ -101,7 +105,8 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
                   [&_iframe]:rounded-lg 
                   [&_iframe]:shadow-sm 
                   [&_iframe]:border-0
-                  [&_iframe[src*='spotify']]:h-[352px] 
+                  [&_iframe[src*='spotify.com']]:h-[352px]
+                  [&_iframe[src*='open.spotify.com']]:h-[352px]
                   [&_iframe[src*='soundcloud']]:h-[166px] 
                   [&_iframe[src*='youtube']]:aspect-video 
                   [&_iframe[src*='bandcamp']]:h-[470px]
@@ -118,6 +123,9 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
               <div className="bg-gray-100 dark:bg-gray-800 border border-dashed border-gray-300 dark:border-gray-600 rounded p-8 text-center">
                 <p className="text-gray-600 dark:text-gray-400">
                   No HTML content provided. Add HTML content in the Sanity editor.
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                  Block type: {blockType}
                 </p>
               </div>
             )}
