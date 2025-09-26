@@ -1,0 +1,3 @@
+# File deleted - artist now managed via Sanity CMS
+# This file was blocking the dynamic route at /artists/[slug]
+# The Count Nine artist is now available through Sanity CMS
