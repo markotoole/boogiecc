@@ -92,10 +92,24 @@ export default function CustomBlockRenderer({ value }: CustomBlockProps) {
               </div>
             )}
             
-            {/* Render HTML content safely with improved iframe styling */}
+            {/* Render HTML content safely with improved iframe styling for all embed types */}
             {htmlContent && (
               <div 
-                className="custom-html-content [&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:rounded-lg [&_iframe]:shadow-sm [&_iframe[src*='spotify']]:h-[352px] [&_iframe[src*='soundcloud']]:h-[166px] [&_iframe[src*='youtube']]:aspect-video [&_iframe[src*='bandcamp']]:h-[470px]"
+                className="custom-html-content 
+                  [&_iframe]:w-full 
+                  [&_iframe]:max-w-full 
+                  [&_iframe]:rounded-lg 
+                  [&_iframe]:shadow-sm 
+                  [&_iframe]:border-0
+                  [&_iframe[src*='spotify']]:h-[352px] 
+                  [&_iframe[src*='soundcloud']]:h-[166px] 
+                  [&_iframe[src*='youtube']]:aspect-video 
+                  [&_iframe[src*='bandcamp']]:h-[470px]
+                  [&_iframe[src*='google.com/maps']]:h-[400px]
+                  [&_iframe[src*='google.com/forms']]:h-[600px]
+                  [&_iframe[src*='docs.google.com']]:h-[600px]
+                  [&_iframe[src*='calendar.google.com']]:h-[600px]
+                  [&_iframe]:min-h-[300px]"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
             )}
